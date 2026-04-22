@@ -3,890 +3,1411 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kevin & Lourde — 30 Mayo 2026</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;500&family=Jost:wght@200;300;400&display=swap" rel="stylesheet">
+<title>Kevin & Lourdes — 30 Mayo 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400;1,600&family=Cinzel:wght@400;500&family=Jost:wght@200;300;400&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --ivory: #F7F0E3;
-    --cream: #EDE3D0;
-    --warm-brown: #2C1A0E;
-    --mid-brown: #6B3F23;
-    --terracotta: #B85C38;
-    --gold: #C9973A;
-    --gold-light: #E8C97A;
-    --gold-pale: #F0DFA8;
-  }
-
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-
-  html { scroll-behavior: smooth; }
-
-  body {
-    background: var(--warm-brown);
-    color: var(--ivory);
-    font-family: 'Jost', sans-serif;
-    font-weight: 300;
-    overflow-x: hidden;
-  }
-
-  /* ── NOISE TEXTURE OVERLAY ── */
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-    pointer-events: none;
-    z-index: 1000;
-    opacity: 0.35;
-  }
-
-  /* ── DIVIDER ── */
-  .divider {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    margin: 2.5rem auto;
-    max-width: 320px;
-  }
-  .divider::before, .divider::after {
-    content: '';
-    flex: 1;
-    height: 1px;
-    background: linear-gradient(to right, transparent, var(--gold), transparent);
-  }
-  .divider-icon {
-    color: var(--gold);
-    font-size: 1rem;
-    letter-spacing: 0.3em;
-  }
-
-  /* ── HERO ── */
-  #hero {
-    min-height: 100svh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 4rem 2rem;
-    position: relative;
-    background:
-      radial-gradient(ellipse 80% 60% at 50% 0%, rgba(201,151,58,0.12) 0%, transparent 60%),
-      radial-gradient(ellipse 60% 40% at 30% 100%, rgba(184,92,56,0.08) 0%, transparent 50%),
-      var(--warm-brown);
-  }
-
-  .hero-eyebrow {
-    font-family: 'Jost', sans-serif;
-    font-weight: 200;
-    font-size: 0.7rem;
-    letter-spacing: 0.45em;
-    text-transform: uppercase;
-    color: var(--gold-light);
-    margin-bottom: 2.5rem;
-    opacity: 0;
-    animation: fadeUp 1s ease 0.2s forwards;
-  }
-
-  .hero-names {
-    font-family: 'Cormorant Garamond', serif;
-    font-style: italic;
-    font-weight: 300;
-    font-size: clamp(3.5rem, 12vw, 8rem);
-    line-height: 0.95;
-    color: var(--ivory);
-    letter-spacing: -0.01em;
-    opacity: 0;
-    animation: fadeUp 1.2s ease 0.4s forwards;
-  }
-
-  .hero-names .ampersand {
-    font-size: 0.7em;
-    color: var(--gold);
-    display: block;
-    line-height: 1.2;
-  }
-
-  .hero-date {
-    font-family: 'Cinzel', serif;
-    font-size: 0.75rem;
-    letter-spacing: 0.4em;
-    text-transform: uppercase;
-    color: var(--gold-light);
-    margin-top: 2.5rem;
-    opacity: 0;
-    animation: fadeUp 1s ease 0.8s forwards;
-  }
-
-  .hero-ornament {
-    position: absolute;
-    width: 100%;
-    max-width: 500px;
-    opacity: 0.07;
-    pointer-events: none;
-  }
-  .hero-ornament.top { top: -2rem; left: 50%; transform: translateX(-50%); }
-  .hero-ornament.bottom { bottom: -2rem; left: 50%; transform: translateX(-50%) rotate(180deg); }
-
-  .scroll-hint {
-    position: absolute;
-    bottom: 2.5rem;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.5rem;
-    opacity: 0;
-    animation: fadeUp 1s ease 1.4s forwards;
-  }
-  .scroll-hint span {
-    font-size: 0.6rem;
-    letter-spacing: 0.4em;
-    text-transform: uppercase;
-    color: var(--gold);
-    opacity: 0.7;
-  }
-  .scroll-line {
-    width: 1px;
-    height: 40px;
-    background: linear-gradient(to bottom, var(--gold), transparent);
-    animation: scrollPulse 2s ease-in-out infinite;
-  }
-
-  /* ── COUNTDOWN ── */
-  #countdown {
-    padding: 5rem 2rem;
-    text-align: center;
-    background: linear-gradient(to bottom, var(--warm-brown), #1a0f08);
-  }
-
-  .section-label {
-    font-family: 'Jost', sans-serif;
-    font-weight: 200;
-    font-size: 0.65rem;
-    letter-spacing: 0.5em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 3rem;
-  }
-
-  .countdown-grid {
-    display: flex;
-    justify-content: center;
-    gap: clamp(1rem, 4vw, 3rem);
-    flex-wrap: wrap;
-  }
-
-  .countdown-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.5rem;
-    min-width: 70px;
-  }
-
-  .countdown-num {
-    font-family: 'Cormorant Garamond', serif;
-    font-weight: 300;
-    font-size: clamp(2.5rem, 8vw, 5rem);
-    color: var(--gold-light);
-    line-height: 1;
-    position: relative;
-  }
-  .countdown-num::after {
-    content: '';
-    position: absolute;
-    bottom: -4px;
-    left: 0; right: 0;
-    height: 1px;
-    background: var(--gold);
-    opacity: 0.4;
-  }
-
-  .countdown-label {
-    font-size: 0.6rem;
-    letter-spacing: 0.35em;
-    text-transform: uppercase;
-    color: var(--gold);
-    opacity: 0.7;
-  }
-
-  .countdown-sep {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 3rem;
-    color: var(--gold);
-    opacity: 0.3;
-    align-self: flex-start;
-    margin-top: 0.2rem;
-    line-height: 1.2;
-  }
-
-  /* ── HISTORIA ── */
-  #historia {
-    padding: 6rem 2rem;
-    text-align: center;
-    background: #1a0f08;
-    position: relative;
-  }
-
-  .section-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-style: italic;
-    font-weight: 300;
-    font-size: clamp(2rem, 6vw, 3.5rem);
-    color: var(--ivory);
-    margin-bottom: 1.5rem;
-  }
-
-  .section-text {
-    max-width: 520px;
-    margin: 0 auto 3rem;
-    font-size: 0.9rem;
-    line-height: 2;
-    color: var(--cream);
-    opacity: 0.85;
-    font-weight: 200;
-  }
-
-  .gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 0.5rem;
-    max-width: 700px;
-    margin: 0 auto;
-  }
-
-  .gallery-item {
-    aspect-ratio: 3/4;
-    background: var(--mid-brown);
-    border-radius: 2px;
-    overflow: hidden;
-    position: relative;
-  }
-
-  .gallery-item:first-child {
-    grid-row: span 2;
-    aspect-ratio: auto;
-  }
-
-  .gallery-placeholder {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    gap: 0.5rem;
-    color: var(--gold);
-    opacity: 0.3;
-    font-size: 2rem;
-    background: linear-gradient(135deg, #3d2314, #1a0f08);
-  }
-
-  .gallery-placeholder span {
-    font-size: 0.6rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    font-family: 'Jost', sans-serif;
-  }
-
-  /* ── EVENTO ── */
-  #evento {
-    padding: 6rem 2rem;
-    background:
-      radial-gradient(ellipse 100% 50% at 50% 100%, rgba(201,151,58,0.06) 0%, transparent 60%),
-      #1a0f08;
-    text-align: center;
-  }
-
-  .event-cards {
-    display: flex;
-    gap: 1.5rem;
-    justify-content: center;
-    flex-wrap: wrap;
-    margin-top: 3rem;
-    max-width: 700px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .event-card {
-    flex: 1;
-    min-width: 260px;
-    max-width: 320px;
-    border: 1px solid rgba(201,151,58,0.25);
-    padding: 2.5rem 2rem;
-    position: relative;
-    text-align: center;
-  }
-
-  .event-card::before {
-    content: '';
-    position: absolute;
-    inset: -1px;
-    background: linear-gradient(135deg, rgba(201,151,58,0.2), transparent 50%, rgba(201,151,58,0.1));
-    pointer-events: none;
-  }
-
-  .event-card-type {
-    font-family: 'Jost', sans-serif;
-    font-size: 0.6rem;
-    letter-spacing: 0.5em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 1.5rem;
-  }
-
-  .event-icon {
-    font-size: 1.5rem;
-    margin-bottom: 1.2rem;
-    display: block;
-    opacity: 0.8;
-  }
-
-  .event-card-name {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.4rem;
-    font-weight: 400;
-    color: var(--ivory);
-    margin-bottom: 0.5rem;
-  }
-
-  .event-card-address {
-    font-size: 0.78rem;
-    color: var(--cream);
-    opacity: 0.65;
-    line-height: 1.7;
-    font-weight: 200;
-    margin-bottom: 0.8rem;
-  }
-
-  .event-card-time {
-    font-family: 'Cinzel', serif;
-    font-size: 1.1rem;
-    color: var(--gold-light);
-    margin-bottom: 1.5rem;
-  }
-
-  .btn-map {
-    display: inline-block;
-    padding: 0.6rem 1.5rem;
-    border: 1px solid rgba(201,151,58,0.5);
-    color: var(--gold-light);
-    font-family: 'Jost', sans-serif;
-    font-size: 0.65rem;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    background: transparent;
-    cursor: pointer;
-  }
-
-  .btn-map:hover {
-    background: rgba(201,151,58,0.1);
-    border-color: var(--gold);
-  }
-
-  /* ── DRESS CODE ── */
-  #dresscode {
-    padding: 6rem 2rem;
-    text-align: center;
-    background: var(--warm-brown);
-  }
-
-  .dress-detail {
-    font-family: 'Cormorant Garamond', serif;
-    font-style: italic;
-    font-size: 1.3rem;
-    color: var(--cream);
-    margin-bottom: 2.5rem;
-  }
-
-  .color-swatches {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-    flex-wrap: wrap;
-    margin-bottom: 2rem;
-  }
-
-  .swatch {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.6rem;
-  }
-
-  .swatch-circle {
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    border: 1px solid rgba(255,255,255,0.1);
-  }
-
-  .swatch-label {
-    font-size: 0.55rem;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: var(--cream);
-    opacity: 0.6;
-  }
-
-  .avoid-text {
-    font-size: 0.72rem;
-    letter-spacing: 0.15em;
-    color: var(--terracotta);
-    opacity: 0.8;
-    font-weight: 200;
-  }
-
-  /* ── RSVP ── */
-  #rsvp {
-    padding: 6rem 2rem;
-    background: #1a0f08;
-    text-align: center;
-  }
-
-  .rsvp-form {
-    max-width: 440px;
-    margin: 3rem auto 0;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-
-  .form-field {
-    display: flex;
-    flex-direction: column;
-    gap: 0.4rem;
-    text-align: left;
-  }
-
-  .form-field label {
-    font-size: 0.6rem;
-    letter-spacing: 0.35em;
-    text-transform: uppercase;
-    color: var(--gold);
-    opacity: 0.8;
-  }
-
-  .form-field input,
-  .form-field select {
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(201,151,58,0.2);
-    color: var(--ivory);
-    padding: 0.8rem 1rem;
-    font-family: 'Jost', sans-serif;
-    font-weight: 200;
-    font-size: 0.85rem;
-    outline: none;
-    transition: border-color 0.3s;
-    -webkit-appearance: none;
-    appearance: none;
-    border-radius: 0;
-  }
-
-  .form-field select option {
-    background: var(--warm-brown);
-  }
-
-  .form-field input:focus,
-  .form-field select:focus {
-    border-color: var(--gold);
-  }
-
-  .form-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1rem;
-  }
-
-  .attendance-toggle {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0;
-    border: 1px solid rgba(201,151,58,0.2);
-  }
-
-  .toggle-option {
-    padding: 0.85rem;
-    text-align: center;
-    font-size: 0.7rem;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: all 0.3s;
-    color: var(--cream);
-    opacity: 0.6;
-    user-select: none;
-  }
-
-  .toggle-option.active {
-    background: rgba(201,151,58,0.15);
-    color: var(--gold-light);
-    opacity: 1;
-  }
-
-  .btn-submit {
-    margin-top: 1rem;
-    padding: 1rem 2rem;
-    background: transparent;
-    border: 1px solid var(--gold);
-    color: var(--gold-light);
-    font-family: 'Cinzel', serif;
-    font-size: 0.7rem;
-    letter-spacing: 0.4em;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .btn-submit::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: var(--gold);
-    transform: translateX(-100%);
-    transition: transform 0.4s ease;
-    z-index: 0;
-  }
-
-  .btn-submit:hover::before {
-    transform: translateX(0);
-  }
-
-  .btn-submit:hover {
-    color: var(--warm-brown);
-  }
-
-  .btn-submit span {
-    position: relative;
-    z-index: 1;
-  }
-
-  /* ── FOOTER ── */
-  footer {
-    padding: 3rem 2rem;
-    text-align: center;
-    background: #0e0804;
-    border-top: 1px solid rgba(201,151,58,0.1);
-  }
-
-  .footer-names {
-    font-family: 'Cormorant Garamond', serif;
-    font-style: italic;
-    font-size: 1.8rem;
-    color: var(--gold);
-    opacity: 0.6;
-  }
-
-  .footer-sub {
-    font-size: 0.6rem;
-    letter-spacing: 0.4em;
-    text-transform: uppercase;
-    color: var(--cream);
-    opacity: 0.25;
-    margin-top: 0.8rem;
-  }
-
-  /* ── MUSIC PLAYER ── */
-  #music-btn {
-    position: fixed;
-    bottom: 1.5rem;
-    right: 1.5rem;
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    background: rgba(201,151,58,0.15);
-    border: 1px solid rgba(201,151,58,0.4);
-    color: var(--gold-light);
-    font-size: 1rem;
-    cursor: pointer;
-    z-index: 999;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s;
-    backdrop-filter: blur(10px);
-  }
-  #music-btn:hover { background: rgba(201,151,58,0.25); }
-
-  /* ── ANIMATIONS ── */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(24px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  @keyframes scrollPulse {
-    0%, 100% { opacity: 0.3; transform: scaleY(1); }
-    50% { opacity: 1; transform: scaleY(1.2); }
-  }
-
-  .reveal {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.8s ease, transform 0.8s ease;
-  }
-  .reveal.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  .reveal-delay-1 { transition-delay: 0.1s; }
-  .reveal-delay-2 { transition-delay: 0.25s; }
-  .reveal-delay-3 { transition-delay: 0.4s; }
-
-  /* ── MOBILE ── */
-  @media (max-width: 480px) {
-    .gallery-grid { grid-template-columns: repeat(2, 1fr); }
-    .gallery-item:first-child { grid-row: span 1; }
-    .event-cards { flex-direction: column; align-items: center; }
-    .event-card { min-width: 100%; max-width: 100%; }
-  }
+:root {
+  --cream:       #F2EAC9;
+  --sage:        #8A8467;
+  --dark-olive:  #54582f;
+  --light-olive: #86895d;
+  --white:       #FDFAF3;
+  --bg:          #F5F0E2;
+  --text:        #3a3a2e;
+  --gold:        #9a8a50;
+  --gold-light:  #c8b86a;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+
+body {
+  font-family:'Jost',sans-serif;
+  font-weight:300;
+  background: var(--bg);
+  color: var(--text);
+  overflow-x:hidden;
+}
+
+/* ═══════════════════════════════
+   FLOATING PETALS CANVAS
+═══════════════════════════════ */
+#petal-canvas {
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:0;
+}
+
+/* ═══════════════════════════════
+   ENVELOPE SCREEN
+═══════════════════════════════ */
+#envelope-screen {
+  position:fixed;
+  inset:0;
+  z-index:500;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+  gap:2rem;
+  background: radial-gradient(ellipse 120% 100% at 50% 0%, #e8e0c8 0%, #d4cba8 40%, #c8be96 100%);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+#envelope-screen.opening {
+  animation: envelopeOpen 1.2s ease forwards;
+}
+
+@keyframes envelopeOpen {
+  0%   { opacity:1; transform:scale(1); }
+  60%  { opacity:1; transform:scale(1.08); }
+  100% { opacity:0; transform:scale(1.15) translateY(-30px); pointer-events:none; }
+}
+
+/* background lines like reference */
+.env-lines {
+  position:absolute;
+  inset:0;
+  overflow:hidden;
+}
+.env-lines::before, .env-lines::after {
+  content:'';
+  position:absolute;
+  top:50%; left:50%;
+  width:200%;
+  height:1px;
+  background: linear-gradient(to right, transparent, rgba(154,138,80,0.35), transparent);
+  transform-origin: center;
+}
+.env-lines::before { transform: translate(-50%,-50%) rotate(35deg); }
+.env-lines::after  { transform: translate(-50%,-50%) rotate(-35deg); }
+.env-line-h {
+  position:absolute;
+  top:50%; left:50%;
+  width:200%;
+  height:1px;
+  background: linear-gradient(to right, transparent, rgba(154,138,80,0.35), transparent);
+  transform: translate(-50%,-50%) rotate(90deg);
+}
+
+/* envelope shape */
+.envelope-wrap {
+  position:relative;
+  width: clamp(260px, 55vw, 420px);
+  cursor:pointer;
+  filter: drop-shadow(0 20px 60px rgba(84,88,47,0.25));
+  transition: transform 0.3s ease;
+}
+.envelope-wrap:hover { transform: scale(1.03); }
+
+.envelope-body {
+  width:100%;
+  aspect-ratio:1.6/1;
+  background: linear-gradient(160deg, #faf6ec 0%, #ede5c8 60%, #e0d5b0 100%);
+  border-radius:4px;
+  position:relative;
+  overflow:hidden;
+}
+
+/* flap top */
+.env-flap {
+  position:absolute;
+  top:0; left:0; right:0;
+  height:0;
+  border-left: calc(var(--env-w)/2) solid transparent;
+  border-right: calc(var(--env-w)/2) solid transparent;
+  border-top: calc(var(--env-w)*0.35) solid #ddd4b0;
+  --env-w: 100%;
+}
+
+/* V shape bottom fold */
+.env-fold-left {
+  position:absolute;
+  bottom:0; left:0;
+  width:50%; height:100%;
+  background: linear-gradient(135deg, #e8e0c0 0%, #d8cfa8 100%);
+  clip-path: polygon(0 100%, 100% 100%, 0 0);
+}
+.env-fold-right {
+  position:absolute;
+  bottom:0; right:0;
+  width:50%; height:100%;
+  background: linear-gradient(225deg, #e8e0c0 0%, #d8cfa8 100%);
+  clip-path: polygon(100% 100%, 0 100%, 100% 0);
+}
+.env-center {
+  position:absolute;
+  inset:0;
+  background: linear-gradient(160deg, #faf7ee 0%, #ede6cc 100%);
+  clip-path: polygon(50% 58%, 0 100%, 100% 100%, 50% 58%, 100% 0, 0 0);
+}
+
+/* wax seal */
+.wax-seal {
+  position:absolute;
+  bottom:-18px;
+  left:50%;
+  transform:translateX(-50%);
+  width:52px; height:52px;
+  border-radius:50%;
+  background: radial-gradient(circle at 38% 38%, #c9a84c, #8a6a20);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  box-shadow: 0 4px 16px rgba(84,88,47,0.4), inset 0 1px 2px rgba(255,255,255,0.25);
+  font-family:'Cormorant Garamond',serif;
+  font-style:italic;
+  color:#F2EAC9;
+  font-size:1.3rem;
+  letter-spacing:-0.02em;
+}
+
+.env-open-hint {
+  font-family:'Jost',sans-serif;
+  font-weight:200;
+  font-size:0.65rem;
+  letter-spacing:0.45em;
+  text-transform:uppercase;
+  color: var(--dark-olive);
+  opacity:0.7;
+  animation: hintPulse 2s ease-in-out infinite;
+  margin-top:1.5rem;
+}
+
+@keyframes hintPulse {
+  0%,100% { opacity:0.5; }
+  50%      { opacity:0.9; }
+}
+
+/* ═══════════════════════════════
+   MAIN CONTENT
+═══════════════════════════════ */
+#main-content {
+  position:relative;
+  z-index:1;
+  opacity:0;
+  transition: opacity 0.8s ease 0.3s;
+}
+#main-content.visible { opacity:1; }
+
+/* ═══════════════════════════════
+   SECTION COMMONS
+═══════════════════════════════ */
+section { position:relative; overflow:hidden; }
+
+.section-inner {
+  position:relative;
+  z-index:2;
+  padding: 6rem 2rem;
+  text-align:center;
+}
+
+.section-label {
+  font-family:'Jost',sans-serif;
+  font-weight:200;
+  font-size:0.62rem;
+  letter-spacing:0.55em;
+  text-transform:uppercase;
+  color: var(--dark-olive);
+  margin-bottom:1rem;
+}
+
+.section-title {
+  font-family:'Cormorant Garamond',serif;
+  font-style:italic;
+  font-weight:300;
+  font-size:clamp(2rem,6vw,3.2rem);
+  color: var(--dark-olive);
+  margin-bottom:1.5rem;
+  line-height:1.15;
+}
+
+.divider {
+  display:flex;
+  align-items:center;
+  gap:1rem;
+  max-width:300px;
+  margin:0 auto 2.5rem;
+}
+.divider::before,.divider::after {
+  content:'';
+  flex:1;
+  height:1px;
+  background: linear-gradient(to right, transparent, var(--gold), transparent);
+}
+.divider span {
+  color:var(--gold);
+  font-size:0.7rem;
+  letter-spacing:0.3em;
+}
+
+/* ═══════════════════════════════
+   HERO
+═══════════════════════════════ */
+#hero {
+  min-height:100svh;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:4rem 2rem;
+  background:
+    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(134,137,93,0.18) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 40% at 20% 110%, rgba(84,88,47,0.12) 0%, transparent 50%),
+    var(--bg);
+}
+
+.hero-eyebrow {
+  font-weight:200;
+  font-size:0.68rem;
+  letter-spacing:0.5em;
+  text-transform:uppercase;
+  color:var(--light-olive);
+  margin-bottom:2rem;
+  opacity:0;
+  animation:fadeUp 1s ease 0.2s forwards;
+}
+
+.hero-names {
+  font-family:'Cormorant Garamond',serif;
+  font-style:italic;
+  font-weight:300;
+  font-size:clamp(3.8rem,13vw,8.5rem);
+  line-height:0.92;
+  color:var(--dark-olive);
+  letter-spacing:-0.01em;
+  opacity:0;
+  animation:fadeUp 1.2s ease 0.4s forwards;
+}
+.hero-names .amp {
+  display:block;
+  font-size:0.6em;
+  color:var(--gold);
+  line-height:1.3;
+}
+
+.hero-date {
+  font-family:'Cinzel',serif;
+  font-size:0.72rem;
+  letter-spacing:0.42em;
+  text-transform:uppercase;
+  color:var(--sage);
+  margin-top:2.5rem;
+  opacity:0;
+  animation:fadeUp 1s ease 0.8s forwards;
+}
+
+.hero-botanical {
+  position:absolute;
+  pointer-events:none;
+  opacity:0.06;
+}
+.hero-botanical.tl { top:-3rem; left:-3rem; width:280px; transform:rotate(-20deg); }
+.hero-botanical.br { bottom:-3rem; right:-3rem; width:280px; transform:rotate(160deg); }
+
+.scroll-hint {
+  position:absolute;
+  bottom:2rem;
+  left:50%;
+  transform:translateX(-50%);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:0.5rem;
+  opacity:0;
+  animation:fadeUp 1s ease 1.5s forwards;
+}
+.scroll-hint span {
+  font-size:0.58rem;
+  letter-spacing:0.4em;
+  text-transform:uppercase;
+  color:var(--sage);
+  opacity:0.6;
+}
+.scroll-line {
+  width:1px; height:36px;
+  background: linear-gradient(to bottom, var(--gold), transparent);
+  animation:scrollPulse 2s ease-in-out infinite;
+}
+
+/* ═══════════════════════════════
+   COUNTDOWN
+═══════════════════════════════ */
+#countdown {
+  background: linear-gradient(to bottom, var(--bg), #eae3c8);
+}
+
+.countdown-row {
+  display:flex;
+  justify-content:center;
+  gap:clamp(1rem,5vw,3.5rem);
+  flex-wrap:wrap;
+  align-items:flex-start;
+  margin-top:1rem;
+}
+.cd-item { display:flex; flex-direction:column; align-items:center; gap:0.4rem; }
+.cd-num {
+  font-family:'Cormorant Garamond',serif;
+  font-weight:300;
+  font-size:clamp(2.8rem,9vw,5.5rem);
+  color:var(--dark-olive);
+  line-height:1;
+}
+.cd-lbl {
+  font-size:0.58rem;
+  letter-spacing:0.4em;
+  text-transform:uppercase;
+  color:var(--sage);
+}
+.cd-sep {
+  font-family:'Cormorant Garamond',serif;
+  font-size:3rem;
+  color:var(--gold);
+  opacity:0.35;
+  padding-top:0.3rem;
+  line-height:1.1;
+}
+
+/* ═══════════════════════════════
+   HISTORIA
+═══════════════════════════════ */
+#historia { background: #eae3c8; }
+
+.section-text {
+  max-width:500px;
+  margin:0 auto 3rem;
+  font-size:0.88rem;
+  line-height:2.1;
+  color:var(--text);
+  opacity:0.8;
+  font-weight:200;
+}
+
+.gallery-grid {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:6px;
+  max-width:680px;
+  margin:0 auto;
+}
+.gallery-item {
+  aspect-ratio:3/4;
+  background: var(--light-olive);
+  overflow:hidden;
+  position:relative;
+}
+.gallery-item:first-child { grid-row:span 2; aspect-ratio:auto; }
+.gallery-item img {
+  width:100%; height:100%;
+  object-fit:cover;
+  filter:saturate(0.7) brightness(0.95);
+  transition:filter 0.4s;
+}
+.gallery-item:hover img { filter:saturate(1) brightness(1); }
+.gallery-ph {
+  width:100%;height:100%;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  gap:0.5rem;
+  background: linear-gradient(135deg, #c8c4a0, #a8a47a);
+  color:rgba(84,88,47,0.5);
+}
+.gallery-ph svg { width:32px; height:32px; opacity:0.5; }
+.gallery-ph span { font-size:0.55rem; letter-spacing:0.25em; text-transform:uppercase; }
+
+/* ═══════════════════════════════
+   EVENTO
+═══════════════════════════════ */
+#evento {
+  background:
+    radial-gradient(ellipse 80% 50% at 50% 100%, rgba(134,137,93,0.12) 0%, transparent 60%),
+    var(--bg);
+}
+
+.event-cards {
+  display:flex;
+  gap:1.5rem;
+  justify-content:center;
+  flex-wrap:wrap;
+  margin-top:2.5rem;
+  max-width:700px;
+  margin-left:auto;
+  margin-right:auto;
+}
+
+.event-card {
+  flex:1;
+  min-width:250px;
+  max-width:310px;
+  border:1px solid rgba(138,132,103,0.3);
+  padding:2.5rem 1.8rem;
+  position:relative;
+  background: rgba(242,234,201,0.45);
+  backdrop-filter:blur(4px);
+}
+.event-card::before {
+  content:'';
+  position:absolute;
+  inset:-1px;
+  background:linear-gradient(135deg,rgba(154,138,80,0.18),transparent 50%,rgba(134,137,93,0.1));
+  pointer-events:none;
+}
+
+.ev-type {
+  font-size:0.58rem;
+  letter-spacing:0.5em;
+  text-transform:uppercase;
+  color:var(--gold);
+  margin-bottom:1.2rem;
+}
+.ev-icon { font-size:1.6rem; display:block; margin-bottom:1rem; opacity:0.75; }
+.ev-name {
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.35rem;
+  color:var(--dark-olive);
+  margin-bottom:0.5rem;
+}
+.ev-address {
+  font-size:0.76rem;
+  color:var(--sage);
+  line-height:1.7;
+  margin-bottom:0.7rem;
+  font-weight:200;
+}
+.ev-time {
+  font-family:'Cinzel',serif;
+  font-size:1.05rem;
+  color:var(--dark-olive);
+  margin-bottom:1.5rem;
+}
+.btn-map {
+  display:inline-block;
+  padding:0.55rem 1.4rem;
+  border:1px solid rgba(138,132,103,0.45);
+  color:var(--dark-olive);
+  font-family:'Jost',sans-serif;
+  font-size:0.62rem;
+  letter-spacing:0.3em;
+  text-transform:uppercase;
+  text-decoration:none;
+  cursor:pointer;
+  background:transparent;
+  transition:all 0.3s;
+}
+.btn-map:hover { background:rgba(84,88,47,0.08); border-color:var(--dark-olive); }
+
+/* ═══════════════════════════════
+   DRESS CODE
+═══════════════════════════════ */
+#dresscode { background:#eae3c8; }
+
+.dress-subtitle {
+  font-family:'Cormorant Garamond',serif;
+  font-style:italic;
+  font-size:1.25rem;
+  color:var(--sage);
+  margin-bottom:2rem;
+}
+
+.swatches {
+  display:flex;
+  justify-content:center;
+  gap:1.2rem;
+  flex-wrap:wrap;
+  margin-bottom:2rem;
+}
+.swatch { display:flex; flex-direction:column; align-items:center; gap:0.5rem; }
+.swatch-circle {
+  width:46px; height:46px;
+  border-radius:50%;
+  border:1px solid rgba(84,88,47,0.15);
+  box-shadow:0 2px 8px rgba(84,88,47,0.12);
+}
+.swatch-lbl {
+  font-size:0.53rem;
+  letter-spacing:0.25em;
+  text-transform:uppercase;
+  color:var(--sage);
+  opacity:0.8;
+}
+.avoid-note {
+  font-size:0.7rem;
+  letter-spacing:0.15em;
+  color:var(--dark-olive);
+  opacity:0.55;
+  font-weight:200;
+}
+
+/* ═══════════════════════════════
+   MESA DE REGALOS
+═══════════════════════════════ */
+#regalos { background: var(--bg); }
+
+.regalo-cards {
+  display:flex;
+  gap:1rem;
+  justify-content:center;
+  flex-wrap:wrap;
+  margin-top:2.5rem;
+  max-width:600px;
+  margin-left:auto;
+  margin-right:auto;
+}
+.regalo-card {
+  flex:1;
+  min-width:200px;
+  max-width:260px;
+  border:1px solid rgba(138,132,103,0.3);
+  padding:2rem 1.5rem;
+  text-align:center;
+  background:rgba(242,234,201,0.4);
+  cursor:pointer;
+  transition:all 0.3s;
+  text-decoration:none;
+  color:inherit;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:0.8rem;
+}
+.regalo-card:hover {
+  background:rgba(84,88,47,0.08);
+  border-color:var(--dark-olive);
+  transform:translateY(-3px);
+  box-shadow:0 8px 24px rgba(84,88,47,0.1);
+}
+.regalo-logo {
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.4rem;
+  font-weight:600;
+  color:var(--dark-olive);
+  letter-spacing:0.05em;
+}
+.regalo-logo.amazon { font-style:italic; }
+.regalo-desc {
+  font-size:0.7rem;
+  color:var(--sage);
+  letter-spacing:0.08em;
+  font-weight:200;
+}
+.regalo-btn {
+  margin-top:0.5rem;
+  font-size:0.6rem;
+  letter-spacing:0.35em;
+  text-transform:uppercase;
+  color:var(--gold);
+  border-bottom:1px solid rgba(154,138,80,0.3);
+  padding-bottom:2px;
+}
+
+.regalo-note {
+  font-family:'Cormorant Garamond',serif;
+  font-style:italic;
+  font-size:1rem;
+  color:var(--sage);
+  margin-top:2rem;
+  opacity:0.75;
+}
+
+/* ═══════════════════════════════
+   RSVP
+═══════════════════════════════ */
+#rsvp { background:#eae3c8; }
+
+.rsvp-form {
+  max-width:420px;
+  margin:2.5rem auto 0;
+  display:flex;
+  flex-direction:column;
+  gap:1rem;
+}
+.form-field { display:flex; flex-direction:column; gap:0.4rem; text-align:left; }
+.form-field label {
+  font-size:0.58rem;
+  letter-spacing:0.4em;
+  text-transform:uppercase;
+  color:var(--dark-olive);
+  opacity:0.75;
+}
+.form-field input,
+.form-field select {
+  background:rgba(255,255,255,0.5);
+  border:1px solid rgba(138,132,103,0.35);
+  color:var(--text);
+  padding:0.8rem 1rem;
+  font-family:'Jost',sans-serif;
+  font-weight:300;
+  font-size:0.85rem;
+  outline:none;
+  border-radius:0;
+  -webkit-appearance:none;
+  appearance:none;
+  transition:border-color 0.3s;
+}
+.form-field input:focus,
+.form-field select:focus { border-color:var(--dark-olive); }
+.form-field select option { background:#f2eac9; }
+
+.attend-toggle {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  border:1px solid rgba(138,132,103,0.35);
+}
+.toggle-opt {
+  padding:0.8rem;
+  text-align:center;
+  font-size:0.68rem;
+  letter-spacing:0.25em;
+  text-transform:uppercase;
+  cursor:pointer;
+  transition:all 0.3s;
+  color:var(--sage);
+  user-select:none;
+}
+.toggle-opt.active {
+  background:rgba(84,88,47,0.12);
+  color:var(--dark-olive);
+  font-weight:400;
+}
+
+.form-row { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
+
+.btn-submit {
+  margin-top:0.5rem;
+  padding:0.95rem 2rem;
+  background:transparent;
+  border:1px solid var(--dark-olive);
+  color:var(--dark-olive);
+  font-family:'Cinzel',serif;
+  font-size:0.68rem;
+  letter-spacing:0.4em;
+  text-transform:uppercase;
+  cursor:pointer;
+  position:relative;
+  overflow:hidden;
+  transition:color 0.4s;
+}
+.btn-submit::before {
+  content:'';
+  position:absolute;
+  inset:0;
+  background:var(--dark-olive);
+  transform:translateX(-100%);
+  transition:transform 0.4s ease;
+  z-index:0;
+}
+.btn-submit:hover::before { transform:translateX(0); }
+.btn-submit:hover { color:var(--cream); }
+.btn-submit span { position:relative; z-index:1; }
+
+/* ═══════════════════════════════
+   FOOTER
+═══════════════════════════════ */
+footer {
+  padding:3.5rem 2rem;
+  text-align:center;
+  background:var(--dark-olive);
+  position:relative;
+  z-index:2;
+}
+.footer-names {
+  font-family:'Cormorant Garamond',serif;
+  font-style:italic;
+  font-size:2rem;
+  color:var(--cream);
+  opacity:0.7;
+}
+.footer-sub {
+  font-size:0.58rem;
+  letter-spacing:0.45em;
+  text-transform:uppercase;
+  color:var(--cream);
+  opacity:0.3;
+  margin-top:0.7rem;
+}
+
+/* ═══════════════════════════════
+   MUSIC PLAYER
+═══════════════════════════════ */
+#music-player {
+  position:fixed;
+  bottom:1.5rem;
+  right:1.5rem;
+  z-index:900;
+  display:flex;
+  align-items:center;
+  gap:0.6rem;
+  background:rgba(242,234,201,0.88);
+  border:1px solid rgba(138,132,103,0.35);
+  border-radius:100px;
+  padding:0.5rem 1rem 0.5rem 0.5rem;
+  backdrop-filter:blur(12px);
+  box-shadow:0 4px 20px rgba(84,88,47,0.15);
+  transition:opacity 0.3s;
+}
+#music-player.hidden { opacity:0; pointer-events:none; }
+
+#music-toggle {
+  width:36px; height:36px;
+  border-radius:50%;
+  border:1px solid rgba(84,88,47,0.3);
+  background:transparent;
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  transition:all 0.3s;
+  color:var(--dark-olive);
+  font-size:1rem;
+}
+#music-toggle:hover { background:rgba(84,88,47,0.1); }
+
+.music-info {
+  display:flex;
+  flex-direction:column;
+  gap:1px;
+}
+.music-title {
+  font-size:0.62rem;
+  font-weight:400;
+  color:var(--dark-olive);
+  letter-spacing:0.05em;
+}
+.music-artist {
+  font-size:0.55rem;
+  color:var(--sage);
+  font-weight:200;
+  letter-spacing:0.05em;
+}
+
+.music-bars {
+  display:flex;
+  gap:2px;
+  align-items:flex-end;
+  height:14px;
+  margin-left:0.2rem;
+}
+.music-bars span {
+  display:block;
+  width:3px;
+  background:var(--gold);
+  border-radius:1px;
+  transform-origin:bottom;
+}
+.music-bars.playing span:nth-child(1) { animation:bar 0.7s ease-in-out infinite; }
+.music-bars.playing span:nth-child(2) { animation:bar 0.9s ease-in-out 0.15s infinite; }
+.music-bars.playing span:nth-child(3) { animation:bar 0.6s ease-in-out 0.05s infinite; }
+.music-bars.playing span:nth-child(4) { animation:bar 0.8s ease-in-out 0.25s infinite; }
+
+@keyframes bar {
+  0%,100% { height:4px; }
+  50%      { height:14px; }
+}
+
+/* ═══════════════════════════════
+   REVEAL
+═══════════════════════════════ */
+.reveal {
+  opacity:0;
+  transform:translateY(28px);
+  transition:opacity 0.8s ease, transform 0.8s ease;
+}
+.reveal.visible { opacity:1; transform:translateY(0); }
+.rd1 { transition-delay:0.1s; }
+.rd2 { transition-delay:0.25s; }
+.rd3 { transition-delay:0.4s; }
+
+/* ═══════════════════════════════
+   ANIMATIONS
+═══════════════════════════════ */
+@keyframes fadeUp {
+  from { opacity:0; transform:translateY(22px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+@keyframes scrollPulse {
+  0%,100% { opacity:0.3; }
+  50%      { opacity:1; }
+}
+
+/* ═══════════════════════════════
+   RESPONSIVE
+═══════════════════════════════ */
+@media (max-width:520px) {
+  .gallery-grid { grid-template-columns:repeat(2,1fr); }
+  .gallery-item:first-child { grid-row:span 1; }
+  .event-cards, .regalo-cards { flex-direction:column; align-items:center; }
+  .event-card, .regalo-card { max-width:100%; min-width:100%; }
+  #music-player { right:0.75rem; bottom:0.75rem; }
+}
 </style>
 </head>
 <body>
 
-<!-- HERO -->
-<section id="hero">
-  <p class="hero-eyebrow">Los invitan a celebrar</p>
-  <h1 class="hero-names">
-    Kevin
-    <span class="ampersand">&</span>
-    Lourde
-  </h1>
-  <p class="hero-date">30 · Mayo · 2026 &nbsp;·&nbsp; Querétaro, México</p>
+<!-- ═══ CANVAS PETALS ═══ -->
+<canvas id="petal-canvas"></canvas>
 
-  <div class="scroll-hint">
-    <span>Deslizar</span>
-    <div class="scroll-line"></div>
+<!-- ═══ ENVELOPE SCREEN ═══ -->
+<div id="envelope-screen">
+  <div class="env-lines">
+    <div class="env-line-h"></div>
   </div>
-</section>
 
-<!-- COUNTDOWN -->
-<section id="countdown">
-  <p class="section-label">Falta poco para el gran día</p>
-  <div class="countdown-grid">
-    <div class="countdown-item">
-      <span class="countdown-num" id="cd-days">00</span>
-      <span class="countdown-label">Días</span>
-    </div>
-    <span class="countdown-sep">·</span>
-    <div class="countdown-item">
-      <span class="countdown-num" id="cd-hours">00</span>
-      <span class="countdown-label">Horas</span>
-    </div>
-    <span class="countdown-sep">·</span>
-    <div class="countdown-item">
-      <span class="countdown-num" id="cd-mins">00</span>
-      <span class="countdown-label">Minutos</span>
-    </div>
-    <span class="countdown-sep">·</span>
-    <div class="countdown-item">
-      <span class="countdown-num" id="cd-secs">00</span>
-      <span class="countdown-label">Segundos</span>
+  <div class="envelope-wrap" id="env-wrap" onclick="openEnvelope()">
+    <div class="envelope-body">
+      <div class="env-flap"></div>
+      <div class="env-fold-left"></div>
+      <div class="env-fold-right"></div>
+      <div class="env-center"></div>
+      <div class="wax-seal">K<span style="font-size:0.55em;opacity:0.7">&</span>L</div>
     </div>
   </div>
-</section>
 
-<!-- HISTORIA -->
-<section id="historia">
-  <div class="divider reveal"><span class="divider-icon">✦ ✦ ✦</span></div>
-  <h2 class="section-title reveal">Nuestra Historia</h2>
-  <p class="section-text reveal reveal-delay-1">
-    Hay momentos que marcan un antes y un después.<br>
-    Para nosotros, ese momento llegó cuando elegimos<br>
-    unir nuestros caminos y caminar juntos, de la mano,<br>
-    por el resto de nuestros días.
-  </p>
-  <div class="gallery-grid reveal reveal-delay-2">
-    <div class="gallery-item">
-      <div class="gallery-placeholder">🌿<span>Foto 1</span></div>
-    </div>
-    <div class="gallery-item">
-      <div class="gallery-placeholder">🌿<span>Foto 2</span></div>
-    </div>
-    <div class="gallery-item">
-      <div class="gallery-placeholder">🌿<span>Foto 3</span></div>
-    </div>
-    <div class="gallery-item">
-      <div class="gallery-placeholder">🌿<span>Foto 4</span></div>
-    </div>
-    <div class="gallery-item">
-      <div class="gallery-placeholder">🌿<span>Foto 5</span></div>
-    </div>
-  </div>
-</section>
+  <p class="env-open-hint">Toca para abrir</p>
+</div>
 
-<!-- EVENTO -->
-<section id="evento">
-  <div class="divider reveal"><span class="divider-icon">✦ ✦ ✦</span></div>
-  <h2 class="section-title reveal">El Gran Día</h2>
-  <div class="event-cards">
-    <div class="event-card reveal reveal-delay-1">
-      <p class="event-card-type">Ceremonia</p>
-      <span class="event-icon">⛪</span>
-      <h3 class="event-card-name">Templo de San Francisco</h3>
-      <p class="event-card-address">Av. Principal #204<br>Col. Centro, Querétaro</p>
-      <p class="event-card-time">16:00 hrs</p>
-      <button class="btn-map">Ver en mapa</button>
-    </div>
-    <div class="event-card reveal reveal-delay-2">
-      <p class="event-card-type">Recepción</p>
-      <span class="event-icon">🥂</span>
-      <h3 class="event-card-name">Jardín La Hacienda</h3>
-      <p class="event-card-address">Blvd. Bernardo Quintana #6106<br>Querétaro, Qro.</p>
-      <p class="event-card-time">19:00 hrs</p>
-      <button class="btn-map">Ver en mapa</button>
-    </div>
-  </div>
-</section>
+<!-- ═══ MAIN CONTENT ═══ -->
+<div id="main-content">
 
-<!-- DRESS CODE -->
-<section id="dresscode">
-  <div class="divider reveal"><span class="divider-icon">✦ ✦ ✦</span></div>
-  <h2 class="section-title reveal">Dress Code</h2>
-  <p class="dress-detail reveal reveal-delay-1">Coctel · Lino · Algodón</p>
-  <div class="color-swatches reveal reveal-delay-2">
-    <div class="swatch">
-      <div class="swatch-circle" style="background:#F5ECD7;"></div>
-      <span class="swatch-label">Crema</span>
-    </div>
-    <div class="swatch">
-      <div class="swatch-circle" style="background:#E8D5B0;"></div>
-      <span class="swatch-label">Nude</span>
-    </div>
-    <div class="swatch">
-      <div class="swatch-circle" style="background:#C4A882;"></div>
-      <span class="swatch-label">Arena</span>
-    </div>
-    <div class="swatch">
-      <div class="swatch-circle" style="background:#B8956A;"></div>
-      <span class="swatch-label">Trigo</span>
-    </div>
-    <div class="swatch">
-      <div class="swatch-circle" style="background:#C9973A;"></div>
-      <span class="swatch-label">Dorado</span>
-    </div>
-    <div class="swatch">
-      <div class="swatch-circle" style="background:#8B7355;"></div>
-      <span class="swatch-label">Café</span>
-    </div>
-  </div>
-  <p class="avoid-text reveal reveal-delay-3">Por favor evitar: rojo · negro · blanco · verde · azul</p>
-</section>
+  <!-- HERO -->
+  <section id="hero">
+    <!-- botanical decorations via SVG -->
+    <svg class="hero-botanical tl" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M100 10 Q80 50 40 60 Q80 70 100 120 Q120 70 160 60 Q120 50 100 10Z" fill="#54582f"/>
+      <path d="M100 30 Q70 90 30 100 Q70 110 100 170 Q130 110 170 100 Q130 90 100 30Z" fill="#86895d" opacity="0.6"/>
+      <circle cx="100" cy="185" r="5" fill="#54582f" opacity="0.5"/>
+      <line x1="100" y1="10" x2="100" y2="190" stroke="#54582f" stroke-width="1" opacity="0.3"/>
+    </svg>
+    <svg class="hero-botanical br" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M100 10 Q80 50 40 60 Q80 70 100 120 Q120 70 160 60 Q120 50 100 10Z" fill="#54582f"/>
+      <path d="M100 30 Q70 90 30 100 Q70 110 100 170 Q130 110 170 100 Q130 90 100 30Z" fill="#86895d" opacity="0.6"/>
+      <circle cx="100" cy="185" r="5" fill="#54582f" opacity="0.5"/>
+      <line x1="100" y1="10" x2="100" y2="190" stroke="#54582f" stroke-width="1" opacity="0.3"/>
+    </svg>
 
-<!-- RSVP -->
-<section id="rsvp">
-  <div class="divider reveal"><span class="divider-icon">✦ ✦ ✦</span></div>
-  <h2 class="section-title reveal">Confirma tu Asistencia</h2>
-  <p class="section-text reveal reveal-delay-1" style="margin-bottom:0">
-    Tu presencia es nuestro mejor regalo.<br>
-    Confírmanos antes del <strong style="color:var(--gold-light)">15 de Mayo</strong>.
-  </p>
-  <form class="rsvp-form reveal reveal-delay-2" onsubmit="handleRSVP(event)">
-    <div class="form-field">
-      <label>Tu nombre completo</label>
-      <input type="text" placeholder="Nombre y apellido" required>
+    <p class="hero-eyebrow">Los invitan a celebrar</p>
+    <h1 class="hero-names">
+      Kevin
+      <span class="amp">&</span>
+      Lourdes
+    </h1>
+    <p class="hero-date">30 · Mayo · 2026 &nbsp;·&nbsp; México</p>
+
+    <div class="scroll-hint">
+      <span>Deslizar</span>
+      <div class="scroll-line"></div>
     </div>
-    <div class="form-field">
-      <label>¿Asistirás?</label>
-      <div class="attendance-toggle">
-        <div class="toggle-option active" onclick="selectAttendance(this, true)">Sí asistiré</div>
-        <div class="toggle-option" onclick="selectAttendance(this, false)">No podré ir</div>
+  </section>
+
+  <!-- COUNTDOWN -->
+  <section id="countdown">
+    <div class="section-inner">
+      <p class="section-label reveal">Falta poco para el gran día</p>
+      <div class="countdown-row reveal rd1">
+        <div class="cd-item">
+          <span class="cd-num" id="cd-d">00</span>
+          <span class="cd-lbl">Días</span>
+        </div>
+        <span class="cd-sep">·</span>
+        <div class="cd-item">
+          <span class="cd-num" id="cd-h">00</span>
+          <span class="cd-lbl">Horas</span>
+        </div>
+        <span class="cd-sep">·</span>
+        <div class="cd-item">
+          <span class="cd-num" id="cd-m">00</span>
+          <span class="cd-lbl">Minutos</span>
+        </div>
+        <span class="cd-sep">·</span>
+        <div class="cd-item">
+          <span class="cd-num" id="cd-s">00</span>
+          <span class="cd-lbl">Segundos</span>
+        </div>
       </div>
     </div>
-    <div class="form-row" id="guest-count">
-      <div class="form-field">
-        <label>Adultos</label>
-        <select>
-          <option>1</option><option>2</option><option>3</option><option>4</option>
-        </select>
-      </div>
-      <div class="form-field">
-        <label>Niños</label>
-        <select>
-          <option>0</option><option>1</option><option>2</option><option>3</option>
-        </select>
+  </section>
+
+  <!-- HISTORIA -->
+  <section id="historia">
+    <div class="section-inner">
+      <div class="divider reveal"><span>✦ ✦ ✦</span></div>
+      <p class="section-label reveal">Nuestra historia</p>
+      <h2 class="section-title reveal rd1">Un camino juntos</h2>
+      <p class="section-text reveal rd2">
+        Hay momentos que marcan un antes y un después.<br>
+        Para nosotros, ese momento llegó cuando elegimos<br>
+        unir nuestros caminos y caminar juntos, de la mano,<br>
+        por el resto de nuestros días.
+      </p>
+      <div class="gallery-grid reveal rd2">
+        <div class="gallery-item">
+          <div class="gallery-ph">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
+            <span>Foto 1</span>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <div class="gallery-ph">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
+            <span>Foto 2</span>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <div class="gallery-ph">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
+            <span>Foto 3</span>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <div class="gallery-ph">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
+            <span>Foto 4</span>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <div class="gallery-ph">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
+            <span>Foto 5</span>
+          </div>
+        </div>
       </div>
     </div>
-    <button type="submit" class="btn-submit"><span>Confirmar Asistencia</span></button>
-  </form>
-</section>
+  </section>
 
-<!-- FOOTER -->
-<footer>
-  <p class="footer-names">Kevin & Lourde</p>
-  <p class="footer-sub">30 de Mayo, 2026 · Querétaro, México</p>
-</footer>
+  <!-- EVENTO -->
+  <section id="evento">
+    <div class="section-inner">
+      <div class="divider reveal"><span>✦ ✦ ✦</span></div>
+      <p class="section-label reveal">El gran día</p>
+      <h2 class="section-title reveal rd1">Ceremonia & Recepción</h2>
+      <div class="event-cards">
+        <div class="event-card reveal rd1">
+          <p class="ev-type">Ceremonia</p>
+          <span class="ev-icon">⛪</span>
+          <h3 class="ev-name">Templo San Francisco</h3>
+          <p class="ev-address">Av. Principal #204<br>Col. Centro, México</p>
+          <p class="ev-time">16:00 hrs</p>
+          <button class="btn-map">Ver en mapa</button>
+        </div>
+        <div class="event-card reveal rd2">
+          <p class="ev-type">Recepción</p>
+          <span class="ev-icon">🌿</span>
+          <h3 class="ev-name">Jardín La Hacienda</h3>
+          <p class="ev-address">Blvd. Principal #6106<br>México</p>
+          <p class="ev-time">19:00 hrs</p>
+          <button class="btn-map">Ver en mapa</button>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<!-- MUSIC BTN -->
-<button id="music-btn" title="Música" onclick="toggleMusic()">♪</button>
+  <!-- DRESS CODE -->
+  <section id="dresscode">
+    <div class="section-inner">
+      <div class="divider reveal"><span>✦ ✦ ✦</span></div>
+      <p class="section-label reveal">Vestimenta</p>
+      <h2 class="section-title reveal rd1">Dress Code</h2>
+      <p class="dress-subtitle reveal rd2">Coctel · Lino · Algodón</p>
+      <div class="swatches reveal rd2">
+        <div class="swatch">
+          <div class="swatch-circle" style="background:#F2EAC9;"></div>
+          <span class="swatch-lbl">Crema</span>
+        </div>
+        <div class="swatch">
+          <div class="swatch-circle" style="background:#E8E0C0;"></div>
+          <span class="swatch-lbl">Marfil</span>
+        </div>
+        <div class="swatch">
+          <div class="swatch-circle" style="background:#8A8467;"></div>
+          <span class="swatch-lbl">Sage</span>
+        </div>
+        <div class="swatch">
+          <div class="swatch-circle" style="background:#86895d;"></div>
+          <span class="swatch-lbl">Olivo</span>
+        </div>
+        <div class="swatch">
+          <div class="swatch-circle" style="background:#54582f;"></div>
+          <span class="swatch-lbl">Pino</span>
+        </div>
+        <div class="swatch">
+          <div class="swatch-circle" style="background:#c9a84c;"></div>
+          <span class="swatch-lbl">Dorado</span>
+        </div>
+      </div>
+      <p class="avoid-note reveal rd3">Por favor evitar: rojo · negro · blanco total · naranja</p>
+    </div>
+  </section>
+
+  <!-- MESA DE REGALOS -->
+  <section id="regalos">
+    <div class="section-inner">
+      <div class="divider reveal"><span>✦ ✦ ✦</span></div>
+      <p class="section-label reveal">Mesa de regalos</p>
+      <h2 class="section-title reveal rd1">Con todo nuestro amor</h2>
+      <p class="section-text reveal rd2" style="margin-bottom:0">
+        Tu presencia es nuestro mejor regalo.<br>
+        Si deseas obsequiarnos algo, aquí nuestras opciones:
+      </p>
+      <div class="regalo-cards">
+        <a href="#" class="regalo-card reveal rd1" onclick="return false;">
+          <div class="regalo-logo">Liverpool</div>
+          <p class="regalo-desc">Mesa de regalos<br>Evento #000000</p>
+          <span class="regalo-btn">Ver mesa →</span>
+        </a>
+        <a href="#" class="regalo-card reveal rd2" onclick="return false;">
+          <div class="regalo-logo amazon">amazon</div>
+          <p class="regalo-desc">Lista de deseos<br>Kevin & Lourdes</p>
+          <span class="regalo-btn">Ver lista →</span>
+        </a>
+      </div>
+      <p class="regalo-note reveal rd3">También puedes apoyarnos con una transferencia 💚</p>
+    </div>
+  </section>
+
+  <!-- RSVP -->
+  <section id="rsvp">
+    <div class="section-inner">
+      <div class="divider reveal"><span>✦ ✦ ✦</span></div>
+      <p class="section-label reveal">Confirmación</p>
+      <h2 class="section-title reveal rd1">¿Nos acompañas?</h2>
+      <p class="section-text reveal rd2" style="margin-bottom:0">
+        Confírmanos antes del <strong>15 de Mayo, 2026</strong>.
+      </p>
+      <form class="rsvp-form reveal rd2" onsubmit="handleRSVP(event)">
+        <div class="form-field">
+          <label>Nombre completo</label>
+          <input type="text" placeholder="Tu nombre y apellido" required>
+        </div>
+        <div class="form-field">
+          <label>¿Asistirás?</label>
+          <div class="attend-toggle">
+            <div class="toggle-opt active" onclick="pickAttend(this,true)">Sí asistiré 🌿</div>
+            <div class="toggle-opt" onclick="pickAttend(this,false)">No podré ir</div>
+          </div>
+        </div>
+        <div class="form-row" id="guest-row">
+          <div class="form-field">
+            <label>Adultos</label>
+            <select>
+              <option>1</option><option>2</option><option>3</option><option>4</option>
+            </select>
+          </div>
+          <div class="form-field">
+            <label>Niños</label>
+            <select>
+              <option>0</option><option>1</option><option>2</option><option>3</option>
+            </select>
+          </div>
+        </div>
+        <button type="submit" class="btn-submit"><span>Confirmar asistencia</span></button>
+      </form>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p class="footer-names">Kevin & Lourdes</p>
+    <p class="footer-sub">30 de Mayo, 2026 · México</p>
+  </footer>
+
+</div><!-- /main-content -->
+
+<!-- MUSIC PLAYER -->
+<div id="music-player" class="hidden">
+  <button id="music-toggle" onclick="toggleMusic()">▶</button>
+  <div class="music-info">
+    <span class="music-title">Wedding Ambience</span>
+    <span class="music-artist">Piano & Strings</span>
+  </div>
+  <div class="music-bars" id="music-bars">
+    <span style="height:4px"></span>
+    <span style="height:8px"></span>
+    <span style="height:6px"></span>
+    <span style="height:4px"></span>
+  </div>
+</div>
+
+<!-- Hidden audio - uses a royalty-free ambient track via Web Audio API generated tone -->
+<audio id="bgMusic" loop>
+  <!-- Fallback: generated ambient tone via Web Audio -->
+</audio>
 
 <script>
-  // ── COUNTDOWN ──
-  const weddingDate = new Date('2026-05-30T16:00:00');
+/* ══════════════════════════════
+   ENVELOPE
+══════════════════════════════ */
+function openEnvelope() {
+  const screen = document.getElementById('envelope-screen');
+  const main   = document.getElementById('main-content');
+  const player = document.getElementById('music-player');
 
-  function updateCountdown() {
-    const now = new Date();
-    const diff = weddingDate - now;
-    if (diff <= 0) {
-      document.getElementById('cd-days').textContent = '00';
-      return;
+  screen.classList.add('opening');
+
+  setTimeout(() => {
+    screen.style.display = 'none';
+    main.classList.add('visible');
+    player.classList.remove('hidden');
+    startAmbientMusic();
+  }, 1000);
+}
+
+/* ══════════════════════════════
+   COUNTDOWN
+══════════════════════════════ */
+const wedding = new Date('2026-05-30T16:00:00');
+
+function tick() {
+  const diff = wedding - new Date();
+  if (diff <= 0) return;
+  const d = Math.floor(diff / 86400000);
+  const h = Math.floor((diff % 86400000) / 3600000);
+  const m = Math.floor((diff % 3600000) / 60000);
+  const s = Math.floor((diff % 60000) / 1000);
+  document.getElementById('cd-d').textContent = String(d).padStart(2,'0');
+  document.getElementById('cd-h').textContent = String(h).padStart(2,'0');
+  document.getElementById('cd-m').textContent = String(m).padStart(2,'0');
+  document.getElementById('cd-s').textContent = String(s).padStart(2,'0');
+}
+tick();
+setInterval(tick, 1000);
+
+/* ══════════════════════════════
+   SCROLL REVEAL
+══════════════════════════════ */
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      obs.unobserve(e.target);
     }
-    const d = Math.floor(diff / 86400000);
-    const h = Math.floor((diff % 86400000) / 3600000);
-    const m = Math.floor((diff % 3600000) / 60000);
-    const s = Math.floor((diff % 60000) / 1000);
-    document.getElementById('cd-days').textContent = String(d).padStart(2,'0');
-    document.getElementById('cd-hours').textContent = String(h).padStart(2,'0');
-    document.getElementById('cd-mins').textContent = String(m).padStart(2,'0');
-    document.getElementById('cd-secs').textContent = String(s).padStart(2,'0');
-  }
-  updateCountdown();
-  setInterval(updateCountdown, 1000);
+  });
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 
-  // ── SCROLL REVEAL ──
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add('visible');
-        observer.unobserve(e.target);
+/* ══════════════════════════════
+   RSVP
+══════════════════════════════ */
+let attending = true;
+function pickAttend(el, val) {
+  attending = val;
+  document.querySelectorAll('.toggle-opt').forEach(o => o.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById('guest-row').style.display = val ? 'grid' : 'none';
+}
+function handleRSVP(e) {
+  e.preventDefault();
+  const btn = e.target.querySelector('.btn-submit span');
+  btn.textContent = attending ? '¡Confirmado! 🌿' : 'Recibido, gracias';
+  setTimeout(() => { btn.textContent = 'Confirmar asistencia'; }, 4000);
+}
+
+/* ══════════════════════════════
+   AMBIENT MUSIC (Web Audio API)
+   Generates a gentle pad / ambient
+   tone without external files
+══════════════════════════════ */
+let audioCtx = null;
+let musicNodes = [];
+let musicPlaying = false;
+
+function startAmbientMusic() {
+  if (audioCtx) return;
+  audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  playAmbient();
+}
+
+function playAmbient() {
+  if (!audioCtx) return;
+  musicNodes.forEach(n => { try { n.stop(); } catch(e){} });
+  musicNodes = [];
+
+  const masterGain = audioCtx.createGain();
+  masterGain.gain.setValueAtTime(0, audioCtx.currentTime);
+  masterGain.gain.linearRampToValueAtTime(0.18, audioCtx.currentTime + 3);
+  masterGain.connect(audioCtx.destination);
+
+  // Gentle reverb via convolver
+  const convolver = audioCtx.createConvolver();
+  const bufLen = audioCtx.sampleRate * 3;
+  const irBuffer = audioCtx.createBuffer(2, bufLen, audioCtx.sampleRate);
+  for (let ch = 0; ch < 2; ch++) {
+    const data = irBuffer.getChannelData(ch);
+    for (let i = 0; i < bufLen; i++) {
+      data[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / bufLen, 2.5);
+    }
+  }
+  convolver.buffer = irBuffer;
+  convolver.connect(masterGain);
+
+  const dryGain = audioCtx.createGain();
+  dryGain.gain.value = 0.4;
+  dryGain.connect(masterGain);
+
+  const wetGain = audioCtx.createGain();
+  wetGain.gain.value = 0.6;
+  wetGain.connect(convolver);
+
+  // Soft pad notes (C major pentatonic)
+  const notes = [261.63, 329.63, 392.00, 523.25, 659.25, 783.99];
+  const times = [0, 2.5, 5, 7.5, 10, 12.5, 15, 17.5, 20];
+
+  notes.forEach((freq, i) => {
+    times.forEach((t, j) => {
+      const start = t + (i * 0.3) + Math.random() * 0.5;
+      const osc = audioCtx.createOscillator();
+      const envGain = audioCtx.createGain();
+
+      osc.type = 'sine';
+      osc.frequency.value = freq * (Math.random() > 0.7 ? 0.5 : 1);
+      osc.connect(envGain);
+      envGain.connect(dryGain);
+      envGain.connect(wetGain);
+
+      envGain.gain.setValueAtTime(0, audioCtx.currentTime + start);
+      envGain.gain.linearRampToValueAtTime(0.06 + Math.random()*0.04, audioCtx.currentTime + start + 1.5);
+      envGain.gain.linearRampToValueAtTime(0, audioCtx.currentTime + start + 4 + Math.random()*2);
+
+      osc.start(audioCtx.currentTime + start);
+      osc.stop(audioCtx.currentTime + start + 7);
+      musicNodes.push(osc);
+    });
+  });
+
+  // Low drone
+  const drone = audioCtx.createOscillator();
+  const droneGain = audioCtx.createGain();
+  drone.type = 'sine';
+  drone.frequency.value = 65.41;
+  droneGain.gain.value = 0.06;
+  drone.connect(droneGain);
+  droneGain.connect(masterGain);
+  drone.start();
+  musicNodes.push(drone);
+  musicNodes.push(masterGain);
+
+  musicPlaying = true;
+  document.getElementById('music-toggle').textContent = '⏸';
+  document.getElementById('music-bars').classList.add('playing');
+
+  // Loop
+  setTimeout(() => { if (musicPlaying) playAmbient(); }, 22000);
+}
+
+function stopAmbient() {
+  musicNodes.forEach(n => {
+    try {
+      if (n.gain) {
+        n.gain.linearRampToValueAtTime(0, audioCtx.currentTime + 1.5);
+      } else {
+        n.stop(audioCtx.currentTime + 1.5);
+      }
+    } catch(e){}
+  });
+  musicPlaying = false;
+  document.getElementById('music-toggle').textContent = '▶';
+  document.getElementById('music-bars').classList.remove('playing');
+}
+
+function toggleMusic() {
+  if (!audioCtx) { startAmbientMusic(); return; }
+  if (musicPlaying) stopAmbient();
+  else playAmbient();
+}
+
+/* ══════════════════════════════
+   FLOATING PETALS / BOTANICALS
+   Canvas particle system
+══════════════════════════════ */
+(function initPetals() {
+  const canvas = document.getElementById('petal-canvas');
+  const ctx    = canvas.getContext('2d');
+  let W, H, petals = [];
+
+  const COLORS = ['#8A8467','#86895d','#54582f','#c9a84c','#F2EAC9','#a8ab7a'];
+
+  function resize() {
+    W = canvas.width  = window.innerWidth;
+    H = canvas.height = window.innerHeight;
+  }
+  window.addEventListener('resize', resize);
+  resize();
+
+  // Draw a leaf/petal shape
+  function drawLeaf(ctx, x, y, size, angle, color, alpha) {
+    ctx.save();
+    ctx.translate(x, y);
+    ctx.rotate(angle);
+    ctx.globalAlpha = alpha;
+    ctx.fillStyle = color;
+    ctx.beginPath();
+    ctx.moveTo(0, -size);
+    ctx.bezierCurveTo(size * 0.6, -size * 0.5, size * 0.6, size * 0.5, 0, size);
+    ctx.bezierCurveTo(-size * 0.6, size * 0.5, -size * 0.6, -size * 0.5, 0, -size);
+    ctx.fill();
+    ctx.restore();
+  }
+
+  // Alcatraz / calla lily petal variant
+  function drawPetal(ctx, x, y, size, angle, color, alpha) {
+    ctx.save();
+    ctx.translate(x, y);
+    ctx.rotate(angle);
+    ctx.globalAlpha = alpha;
+    ctx.strokeStyle = color;
+    ctx.lineWidth = 1;
+    ctx.fillStyle = 'transparent';
+    ctx.beginPath();
+    ctx.ellipse(0, 0, size * 0.3, size, 0, 0, Math.PI * 2);
+    ctx.stroke();
+    ctx.restore();
+  }
+
+  function spawnPetal() {
+    return {
+      x: Math.random() * W,
+      y: -30 - Math.random() * 100,
+      size: 4 + Math.random() * 10,
+      angle: Math.random() * Math.PI * 2,
+      vx: (Math.random() - 0.5) * 0.4,
+      vy: 0.3 + Math.random() * 0.6,
+      va: (Math.random() - 0.5) * 0.015,
+      color: COLORS[Math.floor(Math.random() * COLORS.length)],
+      alpha: 0.08 + Math.random() * 0.14,
+      type: Math.random() > 0.5 ? 'leaf' : 'petal',
+    };
+  }
+
+  // Pre-populate
+  for (let i = 0; i < 35; i++) {
+    const p = spawnPetal();
+    p.y = Math.random() * H;
+    petals.push(p);
+  }
+
+  function frame() {
+    ctx.clearRect(0, 0, W, H);
+
+    petals.forEach((p, i) => {
+      p.x += p.vx + Math.sin(Date.now() * 0.001 + i) * 0.15;
+      p.y += p.vy;
+      p.angle += p.va;
+
+      if (p.type === 'leaf') drawLeaf(ctx, p.x, p.y, p.size, p.angle, p.color, p.alpha);
+      else drawPetal(ctx, p.x, p.y, p.size, p.angle, p.color, p.alpha);
+
+      if (p.y > H + 40) {
+        petals[i] = spawnPetal();
       }
     });
-  }, { threshold: 0.15 });
 
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    // Occasionally add new petals
+    if (petals.length < 45 && Math.random() < 0.02) petals.push(spawnPetal());
 
-  // ── ATTENDANCE TOGGLE ──
-  let attending = true;
-  function selectAttendance(el, val) {
-    attending = val;
-    document.querySelectorAll('.toggle-option').forEach(o => o.classList.remove('active'));
-    el.classList.add('active');
-    document.getElementById('guest-count').style.display = val ? 'grid' : 'none';
+    requestAnimationFrame(frame);
   }
-
-  // ── RSVP SUBMIT ──
-  function handleRSVP(e) {
-    e.preventDefault();
-    const btn = e.target.querySelector('.btn-submit span');
-    btn.textContent = attending ? '¡Confirmado! 🥂' : 'Recibido, te esperamos en el corazón';
-    e.target.querySelector('.btn-submit').style.background = attending ? 'rgba(201,151,58,0.25)' : 'rgba(184,92,56,0.2)';
-    setTimeout(() => { btn.textContent = 'Confirmar Asistencia'; }, 4000);
-  }
-
-  // ── MUSIC BTN ──
-  let musicOn = false;
-  function toggleMusic() {
-    musicOn = !musicOn;
-    document.getElementById('music-btn').textContent = musicOn ? '♫' : '♪';
-    document.getElementById('music-btn').style.background = musicOn
-      ? 'rgba(201,151,58,0.3)' : 'rgba(201,151,58,0.15)';
-  }
+  frame();
+})();
 </script>
 </body>
 </html>
