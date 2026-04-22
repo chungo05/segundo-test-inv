@@ -36,7 +36,7 @@ body {
   position:fixed;
   inset:0;
   pointer-events:none;
-  z-index:0;
+  z-index:10;
 }
 
 /* ═══════════════════════════════
@@ -97,9 +97,26 @@ body {
   width: clamp(260px, 55vw, 420px);
   cursor:pointer;
   filter: drop-shadow(0 20px 60px rgba(84,88,47,0.25));
-  transition: transform 0.3s ease;
+  transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1), filter 0.4s ease;
 }
-.envelope-wrap:hover { transform: scale(1.03); }
+.envelope-wrap:hover {
+  transform: scale(1.06) translateY(-6px);
+  filter: drop-shadow(0 32px 80px rgba(84,88,47,0.38));
+}
+.envelope-wrap:hover .env-flap {
+  border-top-color: #c8bb88;
+}
+.envelope-wrap:hover .wax-seal {
+  transform: translateX(-50%) scale(1.1) rotate(-8deg);
+  box-shadow: 0 8px 28px rgba(84,88,47,0.55), inset 0 1px 2px rgba(255,255,255,0.3);
+}
+.envelope-wrap:hover .env-open-hint-inner {
+  letter-spacing: 0.6em;
+}
+.wax-seal {
+  transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.4s ease;
+}
+.env-flap { transition: border-top-color 0.3s ease; }
 
 .envelope-body {
   width:100%;
@@ -198,10 +215,20 @@ section { position:relative; overflow:hidden; }
 
 .section-inner {
   position:relative;
-  z-index:2;
+  z-index:15;
   padding: 6rem 2rem;
   text-align:center;
 }
+
+/* Each section needs a semi-transparent bg so petals bleed through subtly */
+#hero        { background: radial-gradient(ellipse 80% 50% at 50% -10%, rgba(134,137,93,0.18) 0%, transparent 60%), radial-gradient(ellipse 60% 40% at 20% 110%, rgba(84,88,47,0.12) 0%, transparent 50%), rgba(245,240,226,0.92); }
+#countdown   { background: linear-gradient(to bottom, rgba(245,240,226,0.93), rgba(234,227,200,0.93)); }
+#historia    { background: rgba(234,227,200,0.92); }
+#evento      { background: radial-gradient(ellipse 80% 50% at 50% 100%, rgba(134,137,93,0.12) 0%, transparent 60%), rgba(245,240,226,0.92); }
+#dresscode   { background: rgba(234,227,200,0.92); }
+#regalos     { background: rgba(245,240,226,0.92); }
+#rsvp        { background: rgba(234,227,200,0.92); }
+footer       { background: rgba(84,88,47,0.97); position:relative; z-index:20; }
 
 .section-label {
   font-family:'Jost',sans-serif;
@@ -253,10 +280,6 @@ section { position:relative; overflow:hidden; }
   justify-content:center;
   text-align:center;
   padding:4rem 2rem;
-  background:
-    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(134,137,93,0.18) 0%, transparent 60%),
-    radial-gradient(ellipse 60% 40% at 20% 110%, rgba(84,88,47,0.12) 0%, transparent 50%),
-    var(--bg);
 }
 
 .hero-eyebrow {
@@ -335,9 +358,7 @@ section { position:relative; overflow:hidden; }
 /* ═══════════════════════════════
    COUNTDOWN
 ═══════════════════════════════ */
-#countdown {
-  background: linear-gradient(to bottom, var(--bg), #eae3c8);
-}
+#countdown { }
 
 .countdown-row {
   display:flex;
@@ -373,7 +394,7 @@ section { position:relative; overflow:hidden; }
 /* ═══════════════════════════════
    HISTORIA
 ═══════════════════════════════ */
-#historia { background: #eae3c8; }
+#historia { }
 
 .section-text {
   max-width:500px;
@@ -420,11 +441,7 @@ section { position:relative; overflow:hidden; }
 /* ═══════════════════════════════
    EVENTO
 ═══════════════════════════════ */
-#evento {
-  background:
-    radial-gradient(ellipse 80% 50% at 50% 100%, rgba(134,137,93,0.12) 0%, transparent 60%),
-    var(--bg);
-}
+#evento { }
 
 .event-cards {
   display:flex;
@@ -494,14 +511,31 @@ section { position:relative; overflow:hidden; }
   text-decoration:none;
   cursor:pointer;
   background:transparent;
-  transition:all 0.3s;
+  transition: all 0.3s cubic-bezier(0.34,1.56,0.64,1);
+  position:relative;
+  overflow:hidden;
 }
-.btn-map:hover { background:rgba(84,88,47,0.08); border-color:var(--dark-olive); }
+.btn-map::after {
+  content:'→';
+  position:absolute;
+  right:-1.5rem;
+  top:50%; transform:translateY(-50%);
+  opacity:0;
+  transition: right 0.3s ease, opacity 0.3s ease;
+  font-size:0.8rem;
+}
+.btn-map:hover {
+  background:rgba(84,88,47,0.08);
+  border-color:var(--dark-olive);
+  padding-right:2rem;
+  letter-spacing:0.35em;
+}
+.btn-map:hover::after { right:0.6rem; opacity:1; }
 
 /* ═══════════════════════════════
    DRESS CODE
 ═══════════════════════════════ */
-#dresscode { background:#eae3c8; }
+#dresscode { }
 
 .dress-subtitle {
   font-family:'Cormorant Garamond',serif;
@@ -543,7 +577,7 @@ section { position:relative; overflow:hidden; }
 /* ═══════════════════════════════
    MESA DE REGALOS
 ═══════════════════════════════ */
-#regalos { background: var(--bg); }
+#regalos { }
 
 .regalo-cards {
   display:flex;
@@ -564,7 +598,7 @@ section { position:relative; overflow:hidden; }
   text-align:center;
   background:rgba(242,234,201,0.4);
   cursor:pointer;
-  transition:all 0.3s;
+  transition: all 0.4s cubic-bezier(0.34,1.56,0.64,1);
   text-decoration:none;
   color:inherit;
   display:flex;
@@ -573,10 +607,15 @@ section { position:relative; overflow:hidden; }
   gap:0.8rem;
 }
 .regalo-card:hover {
-  background:rgba(84,88,47,0.08);
+  background:rgba(84,88,47,0.09);
   border-color:var(--dark-olive);
-  transform:translateY(-3px);
-  box-shadow:0 8px 24px rgba(84,88,47,0.1);
+  transform:translateY(-6px) scale(1.02);
+  box-shadow:0 16px 40px rgba(84,88,47,0.14);
+}
+.regalo-card:hover .regalo-btn {
+  color:var(--dark-olive);
+  border-bottom-color:var(--dark-olive);
+  letter-spacing:0.45em;
 }
 .regalo-logo {
   font-family:'Cormorant Garamond',serif;
@@ -600,6 +639,7 @@ section { position:relative; overflow:hidden; }
   color:var(--gold);
   border-bottom:1px solid rgba(154,138,80,0.3);
   padding-bottom:2px;
+  transition: letter-spacing 0.3s ease, color 0.3s ease, border-bottom-color 0.3s ease;
 }
 
 .regalo-note {
@@ -614,7 +654,7 @@ section { position:relative; overflow:hidden; }
 /* ═══════════════════════════════
    RSVP
 ═══════════════════════════════ */
-#rsvp { background:#eae3c8; }
+#rsvp { }
 
 .rsvp-form {
   max-width:420px;
@@ -662,9 +702,13 @@ section { position:relative; overflow:hidden; }
   letter-spacing:0.25em;
   text-transform:uppercase;
   cursor:pointer;
-  transition:all 0.3s;
+  transition: all 0.25s ease, letter-spacing 0.3s ease;
   color:var(--sage);
   user-select:none;
+}
+.toggle-opt:hover:not(.active) {
+  background:rgba(84,88,47,0.05);
+  letter-spacing:0.3em;
 }
 .toggle-opt.active {
   background:rgba(84,88,47,0.12);
@@ -942,34 +986,19 @@ footer {
       </p>
       <div class="gallery-grid reveal rd2">
         <div class="gallery-item">
-          <div class="gallery-ph">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
-            <span>Foto 1</span>
-          </div>
+          <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=600&q=80&fit=crop" alt="Pareja en pedida de matrimonio" loading="lazy">
         </div>
         <div class="gallery-item">
-          <div class="gallery-ph">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
-            <span>Foto 2</span>
-          </div>
+          <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=400&q=80&fit=crop" alt="Anillo de compromiso" loading="lazy">
         </div>
         <div class="gallery-item">
-          <div class="gallery-ph">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
-            <span>Foto 3</span>
-          </div>
+          <img src="https://images.unsplash.com/photo-1529636444744-adffc9135a5e?w=400&q=80&fit=crop" alt="Pareja enamorada" loading="lazy">
         </div>
         <div class="gallery-item">
-          <div class="gallery-ph">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
-            <span>Foto 4</span>
-          </div>
+          <img src="https://images.unsplash.com/photo-1606216794074-735e91aa2c92?w=400&q=80&fit=crop" alt="Pedida de mano" loading="lazy">
         </div>
         <div class="gallery-item">
-          <div class="gallery-ph">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
-            <span>Foto 5</span>
-          </div>
+          <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=400&q=80&fit=crop" alt="Novios felices" loading="lazy">
         </div>
       </div>
     </div>
