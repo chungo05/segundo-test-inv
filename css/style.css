@@ -363,11 +363,12 @@
     }
 
     .hero-eyebrow {
-      font-weight: 200;
+      font-weight: 400;
       font-size: 0.68rem;
       letter-spacing: 0.5em;
       text-transform: uppercase;
-      color: var(--light-olive);
+      color: var(--dark-olive);
+      text-shadow: 0 1px 4px rgba(245, 240, 226, 0.9);
       margin-bottom: 2rem;
       opacity: 0;
       animation: fadeUp 1s ease 0.2s forwards;
@@ -445,8 +446,8 @@
     .scroll-hint {
       position: absolute;
       bottom: 2rem;
-      left: 50%;
-      transform: translateX(-50%);
+      left: 0;
+      right: 0;
       display: flex;
       flex-direction: column;
       align-items: center;
