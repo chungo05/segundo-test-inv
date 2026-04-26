@@ -1,5 +1,5 @@
     // Revisar si ya confirmó
-    const savedRSVP = localStorage.getItem('rsvp_kevin_lourdes');
+    const savedRSVP = localStorage.getItem('rsvp_lulu_kevinalfredo');
     if (savedRSVP) {
       const saved = JSON.parse(savedRSVP);
       const rsvpSection = document.querySelector('.rsvp-form');
@@ -21,7 +21,7 @@
     }
 
     function resetRSVP() {
-      localStorage.removeItem('rsvp_kevin_lourdes');
+      localStorage.removeItem('rsvp_lulu_kevinalfredo');
       window.location.reload();
     }
 
@@ -151,8 +151,8 @@
 
         const waMsg = encodeURIComponent(
           attending
-            ? `Hola! Soy ${nombre}, confirmo mi asistencia a la boda de Kevin & Lourdes el 30 de mayo. Seremos ${adultos} adultos y ${ninos} niños.`
-            : `Hola! Soy ${nombre}, lamentablemente no podré asistir a la boda de Kevin & Lourdes. ¡Felicidades a los novios!`
+            ? `Hola! Soy ${nombre}, confirmo mi asistencia a la boda de Lulú & Kevin Alfredo el 30 de mayo. Seremos ${adultos} adultos y ${ninos} niños.`
+            : `Hola! Soy ${nombre}, lamentablemente no podré asistir a la boda de Lulú & Kevin Alfredo. ¡Felicidades a los novios!`
         );
         const waNumber = '5218333009265'; // reemplazar con número real de Kevin
 
@@ -164,7 +164,7 @@
         form.appendChild(waBtn);
 
         // Guardar confirmación en localStorage
-        localStorage.setItem('rsvp_kevin_lourdes', JSON.stringify({
+        localStorage.setItem('rsvp_lulu_kevinalfredo', JSON.stringify({
           nombre,
           asistencia: attending ? 'si' : 'no',
           timestamp: new Date().toISOString()
