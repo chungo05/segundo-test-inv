@@ -221,7 +221,7 @@
 
     .env-open-hint {
       font-family: 'Jost', sans-serif;
-      font-weight: 200;
+      font-weight: 400;
       font-size: 0.65rem;
       letter-spacing: 0.45em;
       text-transform: uppercase;
@@ -363,7 +363,7 @@
     }
 
     .hero-eyebrow {
-      font-weight: 400;
+      font-weight: 600;
       font-size: 0.68rem;
       letter-spacing: 0.5em;
       text-transform: uppercase;
