@@ -222,8 +222,8 @@
     .env-open-hint {
       font-family: 'Jost', sans-serif;
       font-weight: 400;
-      font-size: 0.65rem;
-      letter-spacing: 0.45em;
+      font-size: 0.75rem;
+      letter-spacing: 0.4em;
       text-transform: uppercase;
       color: var(--dark-olive);
       opacity: 0.7;
@@ -309,12 +309,12 @@
 
     .section-label {
       font-family: 'Jost', sans-serif;
-      font-weight: 300;
-      font-size: 0.65rem;
-      letter-spacing: 0.5em;
+      font-weight: 400;
+      font-size: 0.72rem;
+      letter-spacing: 0.45em;
       text-transform: uppercase;
       color: var(--dark-olive);
-      opacity: 0.85;
+      opacity: 0.9;
       margin-bottom: 1rem;
     }
 
@@ -322,7 +322,7 @@
       font-family: 'Cormorant Garamond', serif;
       font-style: italic;
       font-weight: 300;
-      font-size: clamp(2rem, 6vw, 3.2rem);
+      font-size: clamp(2.3rem, 6.5vw, 3.8rem);
       color: var(--dark-olive);
       margin-bottom: 1.5rem;
       line-height: 1.15;
@@ -365,8 +365,8 @@
 
     .hero-eyebrow {
       font-weight: 600;
-      font-size: 0.68rem;
-      letter-spacing: 0.5em;
+      font-size: 0.78rem;
+      letter-spacing: 0.45em;
       text-transform: uppercase;
       color: var(--dark-olive);
       text-shadow: 0 1px 4px rgba(245, 240, 226, 0.9);
@@ -406,8 +406,8 @@
 
     .hero-date {
       font-family: 'Cinzel', serif;
-      font-size: 0.75rem;
-      letter-spacing: 0.42em;
+      font-size: 0.88rem;
+      letter-spacing: 0.38em;
       text-transform: uppercase;
       color: var(--dark-olive);
       opacity: 0;
@@ -459,11 +459,11 @@
     }
 
     .scroll-hint span {
-      font-size: 0.58rem;
-      letter-spacing: 0.4em;
+      font-size: 0.7rem;
+      letter-spacing: 0.35em;
       text-transform: uppercase;
-      color: var(--sage);
-      opacity: 0.6;
+      color: var(--dark-olive);
+      opacity: 0.7;
     }
 
     .scroll-line {
@@ -503,11 +503,11 @@
     }
 
     .cd-lbl {
-      font-size: 0.6rem;
-      letter-spacing: 0.4em;
+      font-size: 0.72rem;
+      letter-spacing: 0.35em;
       text-transform: uppercase;
       color: var(--dark-olive);
-      opacity: 0.75;
+      opacity: 0.8;
     }
 
     .cd-sep {
@@ -527,7 +527,7 @@
     .section-text {
       max-width: 500px;
       margin: 0 auto 3rem;
-      font-size: 0.9rem;
+      font-size: 1rem;
       line-height: 2.1;
       color: var(--text);
       font-weight: 400;
@@ -625,8 +625,8 @@
     }
 
     .ev-type {
-      font-size: 0.58rem;
-      letter-spacing: 0.5em;
+      font-size: 0.7rem;
+      letter-spacing: 0.45em;
       text-transform: uppercase;
       color: var(--gold);
       margin-bottom: 1.2rem;
@@ -647,12 +647,12 @@
     }
 
     .ev-address {
-      font-size: 0.78rem;
+      font-size: 0.88rem;
       color: var(--text);
       line-height: 1.7;
       margin-bottom: 0.7rem;
       font-weight: 300;
-      opacity: 0.8;
+      opacity: 0.85;
     }
 
     .ev-time {
@@ -668,8 +668,8 @@
       border: 1px solid rgba(138, 132, 103, 0.45);
       color: var(--dark-olive);
       font-family: 'Jost', sans-serif;
-      font-size: 0.62rem;
-      letter-spacing: 0.3em;
+      font-size: 0.72rem;
+      letter-spacing: 0.28em;
       text-transform: uppercase;
       text-decoration: none;
       cursor: pointer;
@@ -745,7 +745,7 @@
     }
 
     .dc-desc {
-      font-size: 0.8rem;
+      font-size: 0.92rem;
       color: var(--text);
       font-weight: 300;
       line-height: 1.8;
@@ -753,8 +753,8 @@
     }
 
     .dc-avoid {
-      font-size: 0.7rem;
-      color: var(--sage);
+      font-size: 0.82rem;
+      color: var(--text);
       font-weight: 300;
       line-height: 1.7;
       border-top: 1px solid rgba(138, 132, 103, 0.2);
@@ -764,7 +764,7 @@
 
     .dc-note {
       display: block;
-      font-size: 0.62rem;
+      font-size: 0.72rem;
       font-style: italic;
       opacity: 0.75;
       margin-top: 0.2rem;
@@ -830,16 +830,17 @@
     }
 
     .regalo-desc {
-      font-size: 0.7rem;
-      color: var(--sage);
-      letter-spacing: 0.08em;
-      font-weight: 200;
+      font-size: 0.85rem;
+      color: var(--text);
+      letter-spacing: 0.05em;
+      font-weight: 300;
+      opacity: 0.8;
     }
 
     .regalo-btn {
       margin-top: 0.5rem;
-      font-size: 0.6rem;
-      letter-spacing: 0.35em;
+      font-size: 0.7rem;
+      letter-spacing: 0.3em;
       text-transform: uppercase;
       color: var(--gold);
       border-bottom: 1px solid rgba(154, 138, 80, 0.3);
@@ -881,10 +882,10 @@
     }
 
     .hotel-address {
-      font-size: 0.78rem;
+      font-size: 0.9rem;
       color: var(--text);
       font-weight: 300;
-      opacity: 0.75;
+      opacity: 0.8;
       margin-bottom: 1.5rem;
     }
 
@@ -904,15 +905,15 @@
     }
 
     .hotel-detail-lbl {
-      font-size: 0.55rem;
-      letter-spacing: 0.4em;
+      font-size: 0.65rem;
+      letter-spacing: 0.35em;
       text-transform: uppercase;
       color: var(--gold);
     }
 
     .hotel-detail-val {
       font-family: 'Cinzel', serif;
-      font-size: 0.82rem;
+      font-size: 0.92rem;
       color: var(--dark-olive);
     }
 
@@ -937,11 +938,11 @@
     }
 
     .form-field label {
-      font-size: 0.58rem;
-      letter-spacing: 0.4em;
+      font-size: 0.68rem;
+      letter-spacing: 0.35em;
       text-transform: uppercase;
       color: var(--dark-olive);
-      opacity: 0.75;
+      opacity: 0.85;
     }
 
     .form-field input,
@@ -952,7 +953,7 @@
       padding: 0.8rem 1rem;
       font-family: 'Jost', sans-serif;
       font-weight: 300;
-      font-size: 0.85rem;
+      font-size: 0.95rem;
       outline: none;
       border-radius: 0;
       -webkit-appearance: none;
@@ -978,8 +979,8 @@
     .toggle-opt {
       padding: 0.8rem;
       text-align: center;
-      font-size: 0.68rem;
-      letter-spacing: 0.25em;
+      font-size: 0.78rem;
+      letter-spacing: 0.2em;
       text-transform: uppercase;
       cursor: pointer;
       transition: all 0.25s ease, letter-spacing 0.3s ease;
@@ -1011,8 +1012,8 @@
       border: 1px solid var(--dark-olive);
       color: var(--dark-olive);
       font-family: 'Cinzel', serif;
-      font-size: 0.68rem;
-      letter-spacing: 0.4em;
+      font-size: 0.78rem;
+      letter-spacing: 0.35em;
       text-transform: uppercase;
       cursor: pointer;
       position: relative;
@@ -1105,8 +1106,9 @@
 
     .tl-time {
       font-family: 'Cinzel', serif;
-      font-size: 0.75rem;
-      color: var(--gold);
+      font-size: 0.92rem;
+      font-weight: 500;
+      color: var(--dark-olive);
       padding-top: 0.1rem;
       text-align: right;
     }
@@ -1124,15 +1126,17 @@
 
     .tl-content h4 {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 1.1rem;
+      font-size: 1.3rem;
+      font-weight: 400;
       color: var(--dark-olive);
       margin-bottom: 0.2rem;
     }
 
     .tl-content p {
-      font-size: 0.78rem;
-      color: var(--sage);
-      font-weight: 200;
+      font-size: 0.9rem;
+      color: var(--text);
+      font-weight: 300;
+      opacity: 0.75;
     }
 
     /* ═══════════════════════════════
@@ -1255,16 +1259,16 @@
     }
 
     .music-title {
-      font-size: 0.62rem;
+      font-size: 0.72rem;
       font-weight: 400;
       color: var(--dark-olive);
       letter-spacing: 0.05em;
     }
 
     .music-artist {
-      font-size: 0.55rem;
+      font-size: 0.65rem;
       color: var(--sage);
-      font-weight: 200;
+      font-weight: 300;
       letter-spacing: 0.05em;
     }
 
