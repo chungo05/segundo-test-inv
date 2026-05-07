@@ -282,7 +282,16 @@
     }
 
     #historia {
+      background: transparent;
+    }
+
+    #historia::before {
+      content: '';
+      position: absolute;
+      inset: -12px;
       background: url('../resources/textura-blanca.webp') center/cover repeat;
+      filter: blur(4px);
+      z-index: 0;
     }
 
     #evento {
@@ -368,8 +377,8 @@
       font-size: 0.78rem;
       letter-spacing: 0.45em;
       text-transform: uppercase;
-      color: var(--dark-olive);
-      text-shadow: 0 1px 4px rgba(245, 240, 226, 0.9);
+      color: #F7E6CA;
+      text-shadow: 0 1px 6px rgba(0, 0, 0, 0.25);
       margin-bottom: 2rem;
       opacity: 0;
       animation: fadeUp 1s ease 0.2s forwards;
@@ -390,7 +399,7 @@
       font-weight: 400;
       font-size: clamp(4.5rem, 15vw, 10rem);
       line-height: 0.92;
-      color: var(--dark-olive);
+      color: #F7E6CA;
       letter-spacing: 0.01em;
       opacity: 0;
       animation: fadeUp 1.2s ease 0.4s forwards;
@@ -401,7 +410,7 @@
       font-family: 'Cormorant Garamond', serif;
       font-style: italic;
       font-size: 0.5em;
-      color: var(--gold);
+      color: #F7E6CA;
       line-height: 1.3;
     }
 
@@ -410,7 +419,7 @@
       font-size: 0.88rem;
       letter-spacing: 0.38em;
       text-transform: uppercase;
-      color: var(--dark-olive);
+      color: #F7E6CA;
       opacity: 0;
       margin-top: 2.5rem;
       animation: fadeUp 1s ease 0.8s forwards;
@@ -420,7 +429,7 @@
       font-family: 'Cormorant Garamond', serif;
       font-style: italic;
       font-size: clamp(1.3rem, 3.5vw, 2.4rem);
-      color: var(--text);
+      color: #F7E6CA;
       margin-top: 1.8rem;
       opacity: 0;
       animation: fadeUp 1s ease 0.9s forwards;
@@ -463,14 +472,14 @@
       font-size: 0.7rem;
       letter-spacing: 0.35em;
       text-transform: uppercase;
-      color: var(--dark-olive);
+      color: #F7E6CA;
       opacity: 0.7;
     }
 
     .scroll-line {
       width: 1px;
       height: 36px;
-      background: linear-gradient(to bottom, var(--gold), transparent);
+      background: linear-gradient(to bottom, #F7E6CA, transparent);
       animation: scrollPulse 2s ease-in-out infinite;
     }
 
@@ -538,7 +547,7 @@
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 6px;
-      max-width: 680px;
+      max-width: 720px;
       margin: 0 auto;
     }
 
@@ -549,16 +558,21 @@
       position: relative;
     }
 
-    .gallery-item:first-child {
+    .gallery-item.gi-tall {
       grid-row: span 2;
       aspect-ratio: auto;
+    }
+
+    .gallery-item.gi-wide {
+      grid-column: span 2;
+      aspect-ratio: 16/9;
     }
 
     .gallery-item img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      filter: saturate(0.7) brightness(0.95);
+      filter: saturate(0.82) brightness(0.96);
       transition: filter 0.4s;
     }
 
@@ -1378,8 +1392,13 @@
         grid-template-columns: repeat(2, 1fr);
       }
 
-      .gallery-item:first-child {
+      .gallery-item.gi-tall {
         grid-row: span 1;
+      }
+
+      .gallery-item.gi-wide {
+        grid-column: span 2;
+        aspect-ratio: 4/3;
       }
 
       .event-cards,
