@@ -274,7 +274,7 @@
 
     /* Each section needs a semi-transparent bg so petals bleed through subtly */
     #hero {
-      background: linear-gradient(rgba(245, 240, 226, 0.5), rgba(245, 240, 226, 0.8)), url('../resources/foto-hotel-texturizado.webp') center/cover no-repeat;
+      background: linear-gradient(rgba(245, 240, 226, 0.15), rgba(245, 240, 226, 0.35)), url('../resources/foto-hotel-texturizado.webp') center/cover no-repeat;
     }
 
     #countdown {
@@ -377,8 +377,9 @@
 
     .hero-monogram {
       width: clamp(100px, 30vw, 150px);
-      margin: 0 auto 1.5rem;
       display: block;
+      align-self: center;
+      margin-bottom: 1.5rem;
       filter: saturate(0.8) sepia(0.3);
       opacity: 0;
       animation: fadeUp 1s ease 0.3s forwards;
