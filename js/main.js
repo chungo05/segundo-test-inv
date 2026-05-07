@@ -151,8 +151,8 @@
 
         const waMsg = encodeURIComponent(
           attending
-            ? `Hola! Soy ${nombre}, confirmo mi asistencia a la boda de Lulú & Kevin Alfredo el 30 de mayo. Seremos ${adultos} adultos y ${ninos} niños.`
-            : `Hola! Soy ${nombre}, lamentablemente no podré asistir a la boda de Lulú & Kevin Alfredo. ¡Felicidades a los novios!`
+            ? `Hola! Soy ${nombre}, confirmo mi asistencia a la boda de Lourdes & Kevin Alfredo el 30 de mayo. Seremos ${adultos} adultos y ${ninos} niños.`
+            : `Hola! Soy ${nombre}, lamentablemente no podré asistir a la boda de Lourdes & Kevin Alfredo. ¡Felicidades a los novios!`
         );
         const waNumber = '5218333009265'; // reemplazar con número real de Kevin
 
