@@ -274,7 +274,7 @@
 
     /* Each section needs a semi-transparent bg so petals bleed through subtly */
     #hero {
-      background: linear-gradient(rgba(245, 240, 226, 0.5), rgba(245, 240, 226, 0.8)), url('../resources/foto-hotel-texturizado.jpeg') center/cover no-repeat;
+      background: linear-gradient(rgba(245, 240, 226, 0.5), rgba(245, 240, 226, 0.8)), url('../resources/foto-hotel-texturizado.webp') center/cover no-repeat;
     }
 
     #countdown {
@@ -282,7 +282,7 @@
     }
 
     #historia {
-      background: url('../resources/textura-blanca.jpeg') center/cover repeat;
+      background: url('../resources/textura-blanca.webp') center/cover repeat;
     }
 
     #evento {
@@ -309,11 +309,12 @@
 
     .section-label {
       font-family: 'Jost', sans-serif;
-      font-weight: 200;
-      font-size: 0.62rem;
-      letter-spacing: 0.55em;
+      font-weight: 300;
+      font-size: 0.65rem;
+      letter-spacing: 0.5em;
       text-transform: uppercase;
       color: var(--dark-olive);
+      opacity: 0.85;
       margin-bottom: 1rem;
     }
 
@@ -384,32 +385,33 @@
     }
 
     .hero-names {
-      font-family: 'Cormorant Garamond', serif;
-      font-style: italic;
-      font-weight: 300;
-      font-size: clamp(3.8rem, 13vw, 8.5rem);
+      font-family: 'Pinyon Script', cursive;
+      font-weight: 400;
+      font-size: clamp(4.5rem, 15vw, 10rem);
       line-height: 0.92;
       color: var(--dark-olive);
-      letter-spacing: -0.01em;
+      letter-spacing: 0.01em;
       opacity: 0;
       animation: fadeUp 1.2s ease 0.4s forwards;
     }
 
     .hero-names .amp {
       display: block;
-      font-size: 0.6em;
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 0.5em;
       color: var(--gold);
       line-height: 1.3;
     }
 
     .hero-date {
       font-family: 'Cinzel', serif;
-      font-size: 0.72rem;
+      font-size: 0.75rem;
       letter-spacing: 0.42em;
       text-transform: uppercase;
-      color: var(--sage);
-      margin-top: 2.5rem;
+      color: var(--dark-olive);
       opacity: 0;
+      margin-top: 2.5rem;
       animation: fadeUp 1s ease 0.8s forwards;
     }
 
@@ -417,7 +419,7 @@
       font-family: 'Cormorant Garamond', serif;
       font-style: italic;
       font-size: clamp(1.1rem, 3.5vw, 1.4rem);
-      color: var(--sage);
+      color: var(--text);
       margin-top: 1.8rem;
       opacity: 0;
       animation: fadeUp 1s ease 0.9s forwards;
@@ -501,17 +503,18 @@
     }
 
     .cd-lbl {
-      font-size: 0.58rem;
+      font-size: 0.6rem;
       letter-spacing: 0.4em;
       text-transform: uppercase;
-      color: var(--sage);
+      color: var(--dark-olive);
+      opacity: 0.75;
     }
 
     .cd-sep {
       font-family: 'Cormorant Garamond', serif;
       font-size: 3rem;
       color: var(--gold);
-      opacity: 0.35;
+      opacity: 0.5;
       padding-top: 0.3rem;
       line-height: 1.1;
     }
@@ -524,10 +527,9 @@
     .section-text {
       max-width: 500px;
       margin: 0 auto 3rem;
-      font-size: 0.88rem;
+      font-size: 0.9rem;
       line-height: 2.1;
       color: var(--text);
-      opacity: 0.95;
       font-weight: 400;
     }
 
@@ -645,11 +647,12 @@
     }
 
     .ev-address {
-      font-size: 0.76rem;
-      color: var(--sage);
+      font-size: 0.78rem;
+      color: var(--text);
       line-height: 1.7;
       margin-bottom: 0.7rem;
-      font-weight: 200;
+      font-weight: 300;
+      opacity: 0.8;
     }
 
     .ev-time {
@@ -704,51 +707,67 @@
 ═══════════════════════════════ */
     #dresscode {}
 
-    .dress-subtitle {
-      font-family: 'Cormorant Garamond', serif;
-      font-style: italic;
-      font-size: 1.25rem;
-      color: var(--sage);
-      margin-bottom: 2rem;
-    }
-
-    .swatches {
+    .dresscode-grid {
       display: flex;
       justify-content: center;
-      gap: 1.2rem;
+      gap: 1.5rem;
       flex-wrap: wrap;
-      margin-bottom: 2rem;
+      margin-top: 2.5rem;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
     }
 
-    .swatch {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.5rem;
+    .dresscode-card {
+      flex: 1;
+      min-width: 190px;
+      max-width: 210px;
+      border: 1px solid rgba(138, 132, 103, 0.3);
+      padding: 2.2rem 1.5rem;
+      text-align: center;
+      background: rgba(242, 234, 201, 0.45);
     }
 
-    .swatch-circle {
-      width: 46px;
-      height: 46px;
-      border-radius: 50%;
-      border: 1px solid rgba(84, 88, 47, 0.15);
-      box-shadow: 0 2px 8px rgba(84, 88, 47, 0.12);
-    }
-
-    .swatch-lbl {
-      font-size: 0.53rem;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: var(--sage);
+    .dc-icon {
+      display: block;
+      font-size: 1.4rem;
+      color: var(--gold);
+      margin-bottom: 1rem;
       opacity: 0.8;
     }
 
-    .avoid-note {
-      font-size: 0.7rem;
-      letter-spacing: 0.15em;
+    .dc-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1.25rem;
       color: var(--dark-olive);
-      opacity: 0.55;
-      font-weight: 200;
+      margin-bottom: 0.7rem;
+    }
+
+    .dc-desc {
+      font-size: 0.8rem;
+      color: var(--text);
+      font-weight: 300;
+      line-height: 1.8;
+      margin-bottom: 0.8rem;
+    }
+
+    .dc-avoid {
+      font-size: 0.7rem;
+      color: var(--sage);
+      font-weight: 300;
+      line-height: 1.7;
+      border-top: 1px solid rgba(138, 132, 103, 0.2);
+      padding-top: 0.75rem;
+      margin-top: 0.25rem;
+    }
+
+    .dc-note {
+      display: block;
+      font-size: 0.62rem;
+      font-style: italic;
+      opacity: 0.75;
+      margin-top: 0.2rem;
     }
 
     /* ═══════════════════════════════
@@ -835,6 +854,66 @@
       color: var(--sage);
       margin-top: 2rem;
       opacity: 0.75;
+    }
+
+    /* ═══════════════════════════════
+   HOSPEDAJE
+═══════════════════════════════ */
+    #hospedaje {
+      background: rgba(234, 227, 200, 0.92);
+    }
+
+    .hotel-card {
+      max-width: 420px;
+      margin: 2.5rem auto 0;
+      border: 1px solid rgba(138, 132, 103, 0.3);
+      padding: 2.5rem 2rem;
+      background: rgba(242, 234, 201, 0.45);
+      text-align: center;
+    }
+
+    .hotel-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1.5rem;
+      color: var(--dark-olive);
+      margin-bottom: 0.5rem;
+    }
+
+    .hotel-address {
+      font-size: 0.78rem;
+      color: var(--text);
+      font-weight: 300;
+      opacity: 0.75;
+      margin-bottom: 1.5rem;
+    }
+
+    .hotel-details {
+      display: flex;
+      justify-content: center;
+      gap: 2.5rem;
+      border-top: 1px solid rgba(138, 132, 103, 0.2);
+      padding-top: 1.2rem;
+      flex-wrap: wrap;
+    }
+
+    .hotel-detail-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+
+    .hotel-detail-lbl {
+      font-size: 0.55rem;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    .hotel-detail-val {
+      font-family: 'Cinzel', serif;
+      font-size: 0.82rem;
+      color: var(--dark-olive);
     }
 
     /* ═══════════════════════════════
@@ -1057,6 +1136,47 @@
     }
 
     /* ═══════════════════════════════
+   CIERRE
+═══════════════════════════════ */
+    #cierre {
+      background: rgba(245, 240, 226, 0.92);
+    }
+
+    #cierre .section-inner {
+      padding: 5rem 2rem 6rem;
+    }
+
+    .cierre-photo {
+      max-width: 420px;
+      margin: 0 auto 3rem;
+      position: relative;
+    }
+
+    .cierre-photo img {
+      width: 100%;
+      display: block;
+      border-radius: 2px;
+      box-shadow: 0 20px 60px rgba(84, 88, 47, 0.18);
+      filter: saturate(0.85) brightness(0.97);
+    }
+
+    .cierre-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: clamp(1.1rem, 3.5vw, 1.4rem);
+      color: var(--text);
+      letter-spacing: 0.04em;
+      margin-bottom: 1.2rem;
+    }
+
+    .cierre-firma {
+      font-family: 'Pinyon Script', cursive;
+      font-size: clamp(2.8rem, 8vw, 4.5rem);
+      color: var(--dark-olive);
+      line-height: 1;
+    }
+
+    /* ═══════════════════════════════
    FOOTER
 ═══════════════════════════════ */
     footer {
@@ -1072,15 +1192,15 @@
       font-style: italic;
       font-size: 2rem;
       color: var(--cream);
-      opacity: 0.7;
+      opacity: 0.9;
     }
 
     .footer-sub {
-      font-size: 0.58rem;
+      font-size: 0.6rem;
       letter-spacing: 0.45em;
       text-transform: uppercase;
       color: var(--cream);
-      opacity: 0.3;
+      opacity: 0.6;
       margin-top: 0.7rem;
     }
 
