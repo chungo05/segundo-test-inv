@@ -274,7 +274,7 @@
 
     /* Each section needs a semi-transparent bg so petals bleed through subtly */
     #hero {
-      background: linear-gradient(rgba(245, 240, 226, 0.15), rgba(245, 240, 226, 0.35)), url('../resources/foto-hotel-texturizado.webp') center/cover no-repeat;
+      background: linear-gradient(rgba(28, 30, 14, 0.58), rgba(28, 30, 14, 0.72)), url('../resources/foto-hotel-texturizado.webp') center/cover no-repeat;
     }
 
     #countdown {
@@ -377,7 +377,7 @@
       font-size: 0.78rem;
       letter-spacing: 0.45em;
       text-transform: uppercase;
-      color: #F7E6CA;
+      color: #f8f5e3;
       text-shadow: 0 1px 6px rgba(0, 0, 0, 0.25);
       margin-bottom: 2rem;
       opacity: 0;
@@ -399,8 +399,10 @@
       font-weight: 400;
       font-size: clamp(4.5rem, 15vw, 10rem);
       line-height: 0.92;
-      color: #F7E6CA;
+      color: #f8f5e3;
       letter-spacing: 0.01em;
+      text-align: center;
+      width: 100%;
       opacity: 0;
       animation: fadeUp 1.2s ease 0.4s forwards;
     }
@@ -410,7 +412,7 @@
       font-family: 'Cormorant Garamond', serif;
       font-style: italic;
       font-size: 0.5em;
-      color: #F7E6CA;
+      color: #f8f5e3;
       line-height: 1.3;
     }
 
@@ -419,7 +421,7 @@
       font-size: 0.88rem;
       letter-spacing: 0.38em;
       text-transform: uppercase;
-      color: #F7E6CA;
+      color: #f8f5e3;
       opacity: 0;
       margin-top: 2.5rem;
       animation: fadeUp 1s ease 0.8s forwards;
@@ -429,7 +431,7 @@
       font-family: 'Cormorant Garamond', serif;
       font-style: italic;
       font-size: clamp(1.3rem, 3.5vw, 2.4rem);
-      color: #F7E6CA;
+      color: #f8f5e3;
       margin-top: 1.8rem;
       opacity: 0;
       animation: fadeUp 1s ease 0.9s forwards;
@@ -472,21 +474,35 @@
       font-size: 0.7rem;
       letter-spacing: 0.35em;
       text-transform: uppercase;
-      color: #F7E6CA;
+      color: #f8f5e3;
       opacity: 0.7;
     }
 
     .scroll-line {
       width: 1px;
       height: 36px;
-      background: linear-gradient(to bottom, #F7E6CA, transparent);
+      background: linear-gradient(to bottom, #f8f5e3, transparent);
       animation: scrollPulse 2s ease-in-out infinite;
     }
 
     /* ═══════════════════════════════
    COUNTDOWN
 ═══════════════════════════════ */
-    #countdown {}
+    #countdown {
+      position: relative;
+    }
+
+    #countdown::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 120px;
+      background: linear-gradient(to bottom, transparent, #F5F0E2);
+      pointer-events: none;
+      z-index: 2;
+    }
 
     .countdown-row {
       display: flex;
